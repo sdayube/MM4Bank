@@ -4,4 +4,10 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MM4Bank.Application\MM4Bank.Application.csproj" />
+    <ProjectReference Include="..\MM4Bank.Domain\MM4Bank.Domain.csproj" />
+    <ProjectReference Include="..\MM4Bank.Infra.Data\MM4Bank.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>
