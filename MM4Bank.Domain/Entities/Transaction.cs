@@ -4,24 +4,23 @@ namespace MM4Bank.Domain.Entities
 {
     public sealed class Transaction : Entity
     {
-        public double Valor { get; set; }
-        public DateTime DataTransferencia { get; set; } = DateTime.Now;
-        public Account ContaOrigem { get; set; }
-        public Account ContaDestino { get; set; }
+        public decimal Value { get; set; }
+        public Account SourceAccount { get; set; }
+        public Account TargetAccount { get; set; }
 
-        public Transaction(double valor, Account contaOrigem, Account contaDestino)
+        public Transaction(decimal value, Account sourceAccount, Account targetAccount)
         {
-            ValidateDomain(valor, contaOrigem, contaDestino);
+            ValidateDomain(value, targetAccount, sourceAccount);
         }
 
-        private void ValidateDomain(double valor, Account contaOrigem, Account contaDestino)
+        private void ValidateDomain(decimal value, Account sourceAccount, Account targetAccount)
         {
-            DomainExceptionValidation.When(double.IsNaN(valor), "Invalid value.");
-            DomainExceptionValidation.When(valor <= 0, "Invalid value, value must be greater than 0");
+            DomainExceptionValidation.When(value > sourceAccount.Balance, "Not enough balance on source account.");
+            DomainExceptionValidation.When(value <= 0, "Invalid value, value must be greater than 0");
 
-            Valor = valor;
-            ContaOrigem = contaOrigem;
-            ContaDestino = contaDestino;
+            Value = value;
+            SourceAccount = sourceAccount;
+            TargetAccount = targetAccount;
         }
     }
 }
