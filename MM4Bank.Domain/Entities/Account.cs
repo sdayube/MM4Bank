@@ -11,11 +11,14 @@ namespace MM4Bank.Domain.Entities
     {
         //listar propriedades de Account
         public string Name { get; private set; }
-        
+        public decimal Balance { get; private set; }
+
+        public List<Transaction> Transactions { get; private set; } = new List<Transaction>();
         //aqui pode ser mudado de name para AccountNumber
         public Account(string name)
         {
             ValidateDomain(name);
+
         }
 
         public Account(int id, string name)
@@ -40,6 +43,28 @@ namespace MM4Bank.Domain.Entities
             DomainExceptionValidation.When(name.Length < 3, "Invalid name, too short, minimum 3 characters");
 
             Name = name;
+        }
+
+        private void ValidateTransfer(decimal value)
+        {
+            DomainExceptionValidation.When(value <= 0, $"Invalid transfer value: {value}");
+        }
+
+        public void Withdraw(decimal value)
+        {
+            ValidateTransfer(value);
+            DomainExceptionValidation.When(Balance - value < 0,"Balance not enough!");
+            Balance -= value;
+        }
+        public void Deposit(decimal value)
+        {
+            ValidateTransfer(value);
+            Balance += value;
+        }
+        public void Transfer(decimal value, Account destiny_acc)
+        {
+            Withdraw(value);
+            Transactions.Add(new Transaction(value, this, destiny_acc));
         }
     }
 }
