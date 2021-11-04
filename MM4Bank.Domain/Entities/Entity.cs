@@ -9,5 +9,6 @@ namespace MM4Bank.Domain.Entities
     public abstract class Entity
     {
         public int Id { get; protected set; }
+        public DateTime creadtedAt { get; protected set; } = DateTime.Now;
     }
 }
