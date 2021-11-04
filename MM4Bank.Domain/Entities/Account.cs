@@ -19,7 +19,6 @@ namespace MM4Bank.Domain.Entities
         public Account(string name)
         {
             ValidateDomain(name);
-
         }
 
         public Account(int id, string name)
