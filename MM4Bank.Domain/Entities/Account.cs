@@ -13,8 +13,8 @@ namespace MM4Bank.Domain.Entities
         //listar propriedades de Account
         public string Name { get; private set; }
         public decimal Balance { get; private set; }
-
         public List<Transaction> Transactions { get; private set; } = new List<Transaction>();
+
         //aqui pode ser mudado de name para AccountNumber
         public Account(string name)
         {
