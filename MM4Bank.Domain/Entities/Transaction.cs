@@ -2,7 +2,7 @@
 using MM4Bank.Domain.Validation;
 namespace MM4Bank.Domain.Entities
 {
-  public sealed class Transaction : Entity
+    public sealed class Transaction : Entity
     {
         public decimal Value { get; private set; }
         public Account SourceAccount { get; private set; }
