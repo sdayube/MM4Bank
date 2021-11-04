@@ -4,10 +4,10 @@ namespace MM4Bank.Domain.Entities
 {
   public sealed class Transaction : Entity
     {
-        public decimal Value { get; set; }
-        public Account SourceAccount { get; set; }
-        public Account TargetAccount { get; set; }
-        public TransactionType Type { get; set; }
+        public decimal Value { get; private set; }
+        public Account SourceAccount { get; private set; }
+        public Account TargetAccount { get; private set; }
+        public TransactionType Type { get; private set; }
 
         public Transaction(decimal value, Account sourceAccount, Account targetAccount, TransactionType type)
         {
