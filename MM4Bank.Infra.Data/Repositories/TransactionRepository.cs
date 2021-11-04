@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MM4Bank.Infra.Data.Repositories
 {
-    class TransactionRepository : ITransactionRepository
+    public class TransactionRepository : ITransactionRepository
     {
         ApplicationDbContext _transactionContext;
 
