@@ -10,6 +10,7 @@ namespace MM4Bank.Infra.Data.Context
 {
     public class ApplicationDbContext : DbContext
     {
+        //acho que aqui não precisa mexer em nada, apenas nos arquivos da Entities Configuration
         //construtor onde define as opções do Contexto
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
@@ -25,8 +26,5 @@ namespace MM4Bank.Infra.Data.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
-
-
-
     }
 }

@@ -23,7 +23,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
             //se tivermos propriedades do tipo decimal (temos uma)
             // builder.Property(p => p.nomeDaPropriedadeQueTemDecimal).HasPrecision(10,2)
 
-            //aqui configura-se o relacionamento 1:N
+            //aqui configura-se o relacionamento 1:N e a chave estrangeira
             //builder.HasOne(e => e.Account).WithMany(e => e.Clients).HasForeignKey(e => e.AccountId);
         }
     }
