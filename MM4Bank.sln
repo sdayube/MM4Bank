@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MM4Bank.Domain", "MM4Bank.Domain\MM4Bank.Domain.csproj", "{759F2B0E-5157-452D-8B64-1A7285292A94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MM4Bank.Domain", "MM4Bank.Domain\MM4Bank.Domain.csproj", "{759F2B0E-5157-452D-8B64-1A7285292A94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MM4Bank.Application", "MM4Bank.Application\MM4Bank.Application.csproj", "{B3275BC7-97DD-4130-9A75-CAE8875CF081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MM4Bank.Application", "MM4Bank.Application\MM4Bank.Application.csproj", "{B3275BC7-97DD-4130-9A75-CAE8875CF081}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MM4Bank.Infra.Data", "MM4Bank.Infra.Data\MM4Bank.Infra.Data.csproj", "{C541E1D3-3750-4997-904C-482A03F52556}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MM4Bank.Infra.Data", "MM4Bank.Infra.Data\MM4Bank.Infra.Data.csproj", "{C541E1D3-3750-4997-904C-482A03F52556}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MM4Bank.Infra.IoC", "MM4Bank.Infra.IoC\MM4Bank.Infra.IoC.csproj", "{0574ADD1-47C6-4463-8EC7-7E8AAF694510}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MM4Bank.Infra.IoC", "MM4Bank.Infra.IoC\MM4Bank.Infra.IoC.csproj", "{0574ADD1-47C6-4463-8EC7-7E8AAF694510}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MM4Bank.WebUI", "MM4Bank.WebUI\MM4Bank.WebUI.csproj", "{9DBB825A-491B-4990-A167-EAE875A541B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MM4Bank.WebUI", "MM4Bank.WebUI\MM4Bank.WebUI.csproj", "{9DBB825A-491B-4990-A167-EAE875A541B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MM4Bank.Domain.Tests", "MM4Bank.Domain.Tests\MM4Bank.Domain.Tests.csproj", "{72AD64D5-3567-4C0B-904D-D93ECF2C31CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9DBB825A-491B-4990-A167-EAE875A541B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DBB825A-491B-4990-A167-EAE875A541B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DBB825A-491B-4990-A167-EAE875A541B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72AD64D5-3567-4C0B-904D-D93ECF2C31CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72AD64D5-3567-4C0B-904D-D93ECF2C31CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72AD64D5-3567-4C0B-904D-D93ECF2C31CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72AD64D5-3567-4C0B-904D-D93ECF2C31CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
