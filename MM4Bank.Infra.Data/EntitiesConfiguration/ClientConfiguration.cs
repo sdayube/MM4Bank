@@ -11,13 +11,24 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
 {
     //aqui vão as regras de negócio para nossas categorias entrarem no Banco de Dados
     //vou usar a base do curso e abro a task para vocês adaptarem
-    public class ClientConfiguration : IEntityTypeConfiguration<Client>
+    public class ClientConfiguration : EntityConfiguration<Client>
     {
-        public void Configure(EntityTypeBuilder<Client> builder)
+        public override void Configure(EntityTypeBuilder<Client> builder)
         {
+            base.Configure(builder);
+
+            builder.ToTable("TB_Client");
             //as duas linhas abaixo significam que o Id será a chave primária da tabela e que o nome terá tamanho máximo de 100 e será obrigatória (Not Null)
-            builder.HasKey(t => t.Id);
-            builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
+
+            builder
+                .Property(p => p.Name)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder
+                .Property(p => p.Name)
+                .HasMaxLength(100)
+                .IsRequired();
 
             //se tivermos propriedades do tipo decimal (temos uma)
             // builder.Property(p => p.nomeDaPropriedadeQueTemDecimal).HasPrecision(10,2) 
