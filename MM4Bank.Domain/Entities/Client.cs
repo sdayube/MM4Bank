@@ -21,9 +21,8 @@ namespace MM4Bank.Domain.Entities
             ValidateDomain(name, description, price, stock, image);
         }
 
-        public Client(int id, string name, string description, decimal price, int stock, string image)
+        public Client(Guid id, string name, string description, decimal price, int stock, string image)
         {
-            DomainExceptionValidation.When(id < 0, "Invalid Id Value");
             Id = id;
             ValidateDomain(name, description, price, stock, image);
         }

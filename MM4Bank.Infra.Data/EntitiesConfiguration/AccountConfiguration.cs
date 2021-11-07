@@ -23,9 +23,9 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
 
             //o builder HasData popula a tabela com os dados iniciais quando acontecer a primeira migration
             builder.HasData(
-                new Account(1, "Number Account #1"),
-                new Account(2, "Number Account #2"),
-                new Account(3, "Number Account #3")
+                new Account(Guid.NewGuid(), "Number Account #1"),
+                new Account(Guid.NewGuid(), "Number Account #2"),
+                new Account(Guid.NewGuid(), "Number Account #3")
                 );
 
         }

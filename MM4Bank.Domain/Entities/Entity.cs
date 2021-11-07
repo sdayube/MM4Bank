@@ -9,7 +9,7 @@ namespace MM4Bank.Domain.Entities
     public abstract class Entity
     {
         public Guid Id { get; protected set; }
-        public DateTime CreadtedAt { get; protected set; } = DateTime.Now;
+        public DateTime CreatedAt { get; protected set; } = DateTime.Now;
         public DateTime UpdatedAt { get; protected set; } = DateTime.Now;
         public bool IsActive { get; protected set; }
     }

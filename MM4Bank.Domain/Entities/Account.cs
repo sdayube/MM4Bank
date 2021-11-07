@@ -21,9 +21,8 @@ namespace MM4Bank.Domain.Entities
             ValidateDomain(name);
         }
 
-        public Account(int id, string name)
+        public Account(Guid id, string name)
         {
-            DomainExceptionValidation.When(id < 0, "Invalid Id Value");
             Id = id;
             ValidateDomain(name);
         }
@@ -61,10 +60,10 @@ namespace MM4Bank.Domain.Entities
             ValidateTransfer(value);
             Balance += value;
         }
-        public void Transfer(decimal value, Account destiny_acc)
+        public void Transfer(decimal value, Account destiny_acc, TransactionType type)
         {
             Withdraw(value);
-            Transactions.Add(new Transaction(value, this, destiny_acc));
+            Transactions.Add(new Transaction(value, this, destiny_acc, type));
         }
     }
 }

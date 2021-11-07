@@ -2,6 +2,7 @@
 using MM4Bank.Domain.Entities;
 using MM4Bank.Domain.Interfaces;
 using MM4Bank.Infra.Data.Context;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -23,12 +24,12 @@ namespace MM4Bank.Infra.Data.Repositories
             return client;
         }
 
-        public async Task<Client> GetByIdAsync(int? id)
+        public async Task<Client> GetByIdAsync(Guid? id)
         {
-            return await _clientContext.Clients.FindAsync(id);
+            return await _clientContext.Clients.FindAsync(id.ToString());
         }
 
-        public async Task<Client> GetClientAccountAsync(int? id)
+        public async Task<Client> GetClientAccountAsync(Guid? id)
         {
             return await _clientContext.Clients.Include(a => a.Account).SingleOrDefaultAsync(c => c.Id == id);
         }
