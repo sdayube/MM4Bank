@@ -12,14 +12,50 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
     //aqui vão as regras de negócio para nossas categorias entrarem no Banco de Dados
     //vou usar a base do curso e abro a task para vocês adaptarem
     //tentei rodar a migration e deu erro, pesquisando eu vi que o erro é pq falta implementar aqui os arquivos de configuration
-    public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
+    public class TransactionConfiguration : EntityConfiguration<Transaction>
     {
-        public void Configure(EntityTypeBuilder<Transaction> builder)
+        public override void Configure(EntityTypeBuilder<Transaction> builder)
         {
             //verificar quais regras de negócio serão necessárias para se criar uma transaction no banco de dados
 
             //as duas linhas abaixo significam que o Id será a chave primária da tabela e que o nome terá tamanho máximo de 100 e será obrigatória (Not Null)
-            builder.HasKey(t => t.Id);
+
+            builder
+                .Property(p => p.Value)
+                .HasPrecision(10,2)
+                .IsRequired();
+
+            builder
+                .Property(p => p.SourceAccountId)
+                .HasColumnName("ID_SOURCE_ACCOUNT")
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder
+                .HasOne(p => p.SourceAccount)
+                .WithMany(p => p.Transactions)
+                .HasForeignKey(p => p.SourceAccountId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired();
+
+            builder
+                .Property(p => p.TargetAccountId)
+                .HasColumnName("ID_TARGET_ACCOUNT")
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder
+                .HasOne(p => p.TargetAccount)
+                .WithMany(p => p.Transactions)
+                .HasForeignKey(p => p.TargetAccountId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired();
+
+            builder
+                .Property(p => p.Type)
+                .HasColumnName("DS_TYPE")
+                .IsRequired();
+
             //builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
             //se tivermos propriedades do tipo decimal (temos uma)
             // builder.Property(p => p.nomeDaPropriedadeQueTemDecimal).HasPrecision(10,2)

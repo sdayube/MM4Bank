@@ -17,16 +17,60 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
         {
             base.Configure(builder);
 
-            builder.ToTable("TB_Client");
+            builder.ToTable("TB_CLIENT");
             //as duas linhas abaixo significam que o Id será a chave primária da tabela e que o nome terá tamanho máximo de 100 e será obrigatória (Not Null)
 
             builder
                 .Property(p => p.Name)
+                .HasColumnName("NM_NAME")
+                .HasMaxLength(100)
+                .HasConversion(
+                    p => p.Name.FullName,
+                    p => new Name(p)
+                )
+                .IsRequired();
+
+            builder
+                .Property(p => p.CPF)
+                .HasColumnName("NR_CPF")
+                .HasMaxLength(11)
+                .HasConversion(
+                    p => p.CPF.ToString(),
+                    p => new CPF(p)
+                )
+                .IsRequired();
+
+            builder
+                .Property(p => p.AccountId)
+                .HasColumnName("ID_ACCOUNT")
                 .HasMaxLength(100)
                 .IsRequired();
 
             builder
-                .Property(p => p.Name)
+                .HasOne(p => p.Account)
+                .WithMany(p => p.Clients)
+                .HasForeignKey(p => p.AccountId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired();
+
+            builder
+                .Property(p => p.Password)
+                // não sei qual prefixo usar no nome da coluna
+                // nem se assim funciona
+                .HasColumnName("PASSWORD")
+                .HasMaxLength(11)
+                .HasConversion(
+                    // Não sei a definição
+                    // p => p. ,
+                    p => new Password(p) 
+                )
+                .IsRequired();
+
+            builder
+                .Property(p => p.Adress.ToString())
+                // Na verdade melhor fazer uma coluna pra cada campo mas não sei os campos
+                // no nome da coluna coloquei DS de descrição, não sei se é o melhor
+                .HasColumnName("DS_ADRESS")
                 .HasMaxLength(100)
                 .IsRequired();
 
