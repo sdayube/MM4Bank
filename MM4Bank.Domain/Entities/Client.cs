@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MM4Bank.Domain.Entities
 {
-    public sealed class Client : Entity
+public sealed class Client : Entity
     {
         public Name Name { get; private set; }
         public CPF CPF { get; private set; }
