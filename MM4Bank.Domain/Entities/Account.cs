@@ -21,6 +21,7 @@ namespace MM4Bank.Domain.Entities
             ValidateDomain(name);
         }
 
+//  só pra testar
         public Account(Guid id, string name)
         {
             Id = id;
