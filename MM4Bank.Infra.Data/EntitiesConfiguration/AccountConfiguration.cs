@@ -29,6 +29,13 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .HasPrecision(10,2)
                 .IsRequired();
 
+            builder
+                .HasOne(p => p.Client)
+                .WithOne(p => p.Account)
+                .HasForeignKey<Client>(p => p.AccountId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired();
+
             //o builder HasData popula a tabela com os dados iniciais quando acontecer a primeira migration
             builder.HasData(
                 new Account(Guid.NewGuid(), "Number Account #1"),

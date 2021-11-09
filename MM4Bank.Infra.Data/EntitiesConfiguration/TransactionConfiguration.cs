@@ -31,12 +31,12 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder
-                .HasOne(p => p.SourceAccount)
-                .WithMany(p => p.Transactions)
-                .HasForeignKey(p => p.SourceAccountId)
-                .OnDelete(DeleteBehavior.NoAction)
-                .IsRequired();
+            // builder
+            //     .HasOne(p => p.SourceAccount)
+            //     .WithMany(p => p.Transactions)
+            //     .HasForeignKey(p => p.SourceAccountId)
+            //     .OnDelete(DeleteBehavior.NoAction)
+            //     .IsRequired();
 
             builder
                 .Property(p => p.TargetAccountId)
@@ -44,12 +44,12 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder
-                .HasOne(p => p.TargetAccount)
-                .WithMany(p => p.Transactions)
-                .HasForeignKey(p => p.TargetAccountId)
-                .OnDelete(DeleteBehavior.NoAction)
-                .IsRequired();
+            // builder
+            //     .HasOne(p => p.TargetAccount)
+            //     .WithMany(p => p.Transactions)
+            //     .HasForeignKey(p => p.TargetAccountId)
+            //     .OnDelete(DeleteBehavior.NoAction)
+            //     .IsRequired();
 
             builder
                 .Property(p => p.Type)

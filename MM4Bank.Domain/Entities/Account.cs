@@ -33,7 +33,8 @@ namespace MM4Bank.Domain.Entities
             ValidateDomain(name);
         }
 
-        public ICollection<Client> Clients { get; set; }
+        public Client Client { get; private set; }
+        public Guid ClientId { get; private set; }
 
         //podem ser criados n casos de validação aqui
         private void ValidateDomain(string name)

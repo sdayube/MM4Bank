@@ -48,17 +48,15 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .IsRequired();
 
             builder
-            // tirar esses vários clientes da conta
                 .HasOne(p => p.Account)
-                .WithMany(p => p.Clients)
-                .HasForeignKey(p => p.AccountId)
+                .WithOne(p => p.Client)
+                .HasForeignKey<Account>(p => p.ClientId)
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
 
             builder
                 .Property(p => p.Password)
-                // não sei qual prefixo usar no nome da coluna
-                .HasColumnName("PASSWORD")
+                .HasColumnName("DS_PASSWORD")
                 .HasMaxLength(11)
                 .HasConversion(
                     p => p._password ,
