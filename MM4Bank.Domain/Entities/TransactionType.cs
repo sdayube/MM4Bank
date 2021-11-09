@@ -1,6 +1,9 @@
-public enum TransactionType
+namespace MM4Bank.Domain.Entities
 {
-    DEPOSIT,
-    TRANSFER,
-    WITHDRAW
+    public enum TransactionType
+    {
+        DEPOSIT,
+        TRANSFER,
+        WITHDRAW
+    }
 }

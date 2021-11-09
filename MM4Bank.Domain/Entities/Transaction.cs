@@ -11,6 +11,7 @@ namespace MM4Bank.Domain.Entities
         // public Account TargetAccount { get; private set; }
         public TransactionType Type { get; private set; }
 
+        public Transaction(){}
         public Transaction(decimal value, Account sourceAccount, Account targetAccount, TransactionType type)
         {
             ValidateDomain(value, sourceAccount);

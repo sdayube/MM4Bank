@@ -16,6 +16,7 @@ namespace MM4Bank.Domain.Entities
         public List<Transaction> Transactions { get; private set; } = new List<Transaction>();
 
         //aqui pode ser mudado de name para AccountNumber
+        public Account(){}
         public Account(string name)
         {
             ValidateDomain(name);
