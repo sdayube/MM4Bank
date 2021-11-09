@@ -1,4 +1,5 @@
 ﻿using MM4Bank.Domain.Validation;
+using MM4Bank.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,49 +8,47 @@ using System.Threading.Tasks;
 
 namespace MM4Bank.Domain.Entities
 {
-    public sealed class Client : Entity
+public sealed class Client : Entity
     {
-        //listar propriedades do Cliente
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public decimal Price { get; private set; }
-        public int Stock { get; private set; }
-        public string Image { get; private set; }
+        public Name Name { get; private set; }
+        public CPF CPF { get; private set; }
+        public Account Account { get; private set; }
+        public Guid AccountId { get; private set; }
+        public Address Address { get; private set; }
+        public Password Password { get; private set; }
 
-        public Client(string name, string description, decimal price, int stock, string image)
+
+        public Client(string name, string cpf, Account account, string address, string password)
         {
-            ValidateDomain(name, description, price, stock, image);
+            ValidateDomain(name, cpf, account, address, password);
         }
 
-        public Client(Guid id, string name, string description, decimal price, int stock, string image)
+        public Client(Guid id, string name, string cpf, Account account, string address, string password)
         {
             Id = id;
-            ValidateDomain(name, description, price, stock, image);
+            ValidateDomain(name, cpf, account, address, password);
         }
 
-        public void Update(string name, string description, decimal price, int stock, string image, int categoryId)
+        public void Update(string name, string cpf, Account account, string address, string password)
         {
-            ValidateDomain(name, description, price, stock, image);
-            CategoryId = categoryId;
+            ValidateDomain(name, cpf, account, address, password);
+            AccountId = account.Id;
         }
 
-        private void ValidateDomain(string name, string description, decimal price, int stock, string image)
+        private void ValidateDomain(string name, string cpf, Account account, string address, string password)
         {
-            DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid name. Name is required");
-            DomainExceptionValidation.When(name.Length < 3, "Invalid name. Too short, minimum 3 characters");
-            DomainExceptionValidation.When(description.Length < 5 , "Invalid description. Too short, minimum 5 characters");
-            DomainExceptionValidation.When(price < 0, "Invalid price value");
-            DomainExceptionValidation.When(stock < 0, "Invalid stock value");
-            DomainExceptionValidation.When(image.Length < 250, "Invalid image. Too long, maximum 250 characters");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid name");
+            DomainExceptionValidation.When(cpf.Length != 11 , "Please enter a valid cpf");
+            DomainExceptionValidation.When(account is null, "Invalid account");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(address), "Invalid address");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(password), "Invalid password");
+            DomainExceptionValidation.When(password.Length < 8, "Passowrd must be at least 8 characters long");
 
-            Name = name;
-            Description = description;
-            Price = price;
-            Stock = stock;
-            Image = image;
+            Name = new Name(name);
+            CPF = new CPF(cpf);
+            Account = account;
+            Address = new Address(address);
+            Password = new Password(password);
         }
-
-        public int CategoryId { get; set; }
-        public Account Account { get; set; }
     }
 }

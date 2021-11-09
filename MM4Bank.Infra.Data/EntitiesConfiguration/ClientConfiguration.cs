@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MM4Bank.Domain.Entities;
+using MM4Bank.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .HasColumnName("NM_NAME")
                 .HasMaxLength(100)
                 .HasConversion(
-                    p => p.Name.FullName,
+                    p => p.FullName,
                     p => new Name(p)
                 )
                 .IsRequired();
@@ -35,7 +36,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .HasColumnName("NR_CPF")
                 .HasMaxLength(11)
                 .HasConversion(
-                    p => p.CPF.ToString(),
+                    p => p.ToString(),
                     p => new CPF(p)
                 )
                 .IsRequired();
@@ -47,6 +48,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .IsRequired();
 
             builder
+            // tirar esses vários clientes da conta
                 .HasOne(p => p.Account)
                 .WithMany(p => p.Clients)
                 .HasForeignKey(p => p.AccountId)
@@ -56,22 +58,22 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
             builder
                 .Property(p => p.Password)
                 // não sei qual prefixo usar no nome da coluna
-                // nem se assim funciona
                 .HasColumnName("PASSWORD")
                 .HasMaxLength(11)
                 .HasConversion(
-                    // Não sei a definição
-                    // p => p. ,
+                    p => p._password ,
                     p => new Password(p) 
                 )
                 .IsRequired();
 
             builder
-                .Property(p => p.Adress.ToString())
-                // Na verdade melhor fazer uma coluna pra cada campo mas não sei os campos
-                // no nome da coluna coloquei DS de descrição, não sei se é o melhor
+                .Property(p => p.Address)
                 .HasColumnName("DS_ADRESS")
-                .HasMaxLength(100)
+                .HasMaxLength(250)
+                .HasConversion(
+                    p => p.FullAddress,
+                    p => new Address(p)
+                )
                 .IsRequired();
 
             //se tivermos propriedades do tipo decimal (temos uma)
