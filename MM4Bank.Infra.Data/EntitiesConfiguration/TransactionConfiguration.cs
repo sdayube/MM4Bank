@@ -24,6 +24,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
 
             builder
                 .Property(p => p.Value)
+                .HasColumnName("VL_VALUE")
                 .HasPrecision(10,2)
                 .IsRequired();
 
