@@ -13,12 +13,15 @@ namespace MM4Bank.Domain.Entities
 
         private Transaction(){}
 
-        public Transaction(decimal value, Guid sourceAccountId, Guid targetAccountId, TransactionType type)
+        public Transaction(decimal value, Account sourceAccount, Account targetAccount, TransactionType type)
         {
+            // Verificar se funciona, se não retirar sourceAccount e TargetAccount
             ValidateDomain(value, sourceAccount);
             Value = value;
-            SourceAccountId = sourceAccountId;
-            TargetAccountId = targetAccountId;
+            SourceAccountId = sourceAccount.Id;
+            SourceAccount = sourceAccount;
+            TargetAccountId = targetAccount.Id;
+            TargetAccount = targetAccount;
             Type = type;
         }
 

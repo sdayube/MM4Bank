@@ -10,41 +10,25 @@ namespace MM4Bank.Domain.Entities
 {
     public sealed class Account : Entity
     {
-        //listar propriedades de Account
-        public string Name { get; private set; }
-        public decimal Balance { get; private set; }
+        public int AccountNumber { get; private set; }
+        public decimal Balance { get; private set; } = 0;
         public Client Client { get; private set; }
         public Guid ClientId { get; private set; }
-        public List<Transaction> Deposits { get;  set; }
-        public List<Transaction> Withdraws { get;  set; }
+        public List<Transaction> Deposits { get; private set; }
+        public List<Transaction> Withdraws { get; private set; }
 
-        //aqui pode ser mudado de name para AccountNumber
         private Account(){}
 
-        public Account(string name)
+        public Account(int accountNumber)
         {
-            ValidateDomain(name);
+            ValidateDomain(accountNumber);
         }
 
-        public Account(Guid id, string name)
+        private void ValidateDomain(int accountNumber)
         {
-            Id = id;
-            ValidateDomain(name);
-        }
+            DomainExceptionValidation.When(accountNumber < 1, "Invalid account number!");
 
-        public void Update(string name)
-        {
-            ValidateDomain(name);
-        }
-
-        //podem ser criados n casos de validação aqui
-        private void ValidateDomain(string name)
-        {
-            DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid name. Name is required");
-
-            DomainExceptionValidation.When(name.Length < 3, "Invalid name, too short, minimum 3 characters");
-
-            Name = name;
+            AccountNumber = accountNumber;
         }
 
         private void ValidateTransfer(decimal value)
@@ -52,21 +36,39 @@ namespace MM4Bank.Domain.Entities
             DomainExceptionValidation.When(value <= 0, $"Invalid transfer value: {value}");
         }
 
+        private void ValidateBalance(decimal value)
+        {
+            DomainExceptionValidation.When(Balance - value < 0,"Balance not enough!");
+        }
+
         public void Withdraw(decimal value)
         {
             ValidateTransfer(value);
-            DomainExceptionValidation.When(Balance - value < 0,"Balance not enough!");
+            ValidateBalance(value)
             Balance -= value;
+            Withdraws.Add(new Transaction(value, this, null, TransactionType.WITHDRAW));
         }
         public void Deposit(decimal value)
         {
             ValidateTransfer(value);
             Balance += value;
+            Deposits.Add(new Transaction(value, null, this, TransactionType.DEPOSIT));
         }
-        public void Transfer(decimal value, Account destiny_acc, TransactionType type)
+
+        public void SendTransfer(decimal value, Account targetAccount)
         {
-            Withdraw(value);
-            Transactions.Add(new Transaction(value, this, destiny_acc, type));
+            ValidateTransfer(value);
+            ValidateBalance(value)
+            Balance -= value;
+            Transaction transaction = new Transaction(value, this, targetAccount, TransactionType.TRANSFER);
+            Withdraws.Add(transaction);
+            targetAccount.ReceiveTransfer(value, this)
+        }
+
+        public void ReceiveTransfer(decimal value, Account sourceAccount, Transaction transaction)
+        {
+            Balance += value;
+            Deposits.Add(transaction);
         }
     }
 }
