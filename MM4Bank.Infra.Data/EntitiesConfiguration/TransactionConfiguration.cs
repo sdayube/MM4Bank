@@ -19,6 +19,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
             //verificar quais regras de negócio serão necessárias para se criar uma transaction no banco de dados
 
             //as duas linhas abaixo significam que o Id será a chave primária da tabela e que o nome terá tamanho máximo de 100 e será obrigatória (Not Null)
+            base.Configure(builder);
 
             builder
                 .Property(p => p.Value)

@@ -17,8 +17,8 @@ public sealed class Client : Entity
         public Address Address { get; private set; }
         public Password Password { get; private set; }
 
-
         public Client(){}
+
         public Client(string name, string cpf, Account account, string address, string password)
         {
             ValidateDomain(name, cpf, account, address, password);

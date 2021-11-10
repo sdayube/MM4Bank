@@ -14,6 +14,8 @@ namespace MM4Bank.Domain.Entities
         public string Name { get; private set; }
         public decimal Balance { get; private set; }
         public List<Transaction> Transactions { get; private set; } = new List<Transaction>();
+        public Client Client { get; private set; }
+        public Guid ClientId { get; private set; }
 
         //aqui pode ser mudado de name para AccountNumber
         public Account(){}
@@ -33,9 +35,6 @@ namespace MM4Bank.Domain.Entities
         {
             ValidateDomain(name);
         }
-
-        public Client Client { get; private set; }
-        public Guid ClientId { get; private set; }
 
         //podem ser criados n casos de validação aqui
         private void ValidateDomain(string name)

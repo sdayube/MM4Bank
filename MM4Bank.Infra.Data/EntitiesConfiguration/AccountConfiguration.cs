@@ -20,13 +20,21 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
             //as duas linhas abaixo significam que o Id será a chave primária da tabela e que o nome terá tamanho máximo de 100 e será obrigatória (Not Null)
             builder
                 .Property(p => p.Name)
+                .HasColumnName("NM_NAME")
                 .HasMaxLength(100)
                 .IsRequired();
             //se tivermos propriedades do tipo decimal (temos uma)
             // builder.Property(p => p.nomeDaPropriedadeQueTemDecimal).HasPrecision(10,2)
             builder
                 .Property(p => p.Balance)
+                .HasColumnName("VL_BALANCE")
                 .HasPrecision(10,2)
+                .IsRequired();
+
+            builder
+                .Property(p => p.ClientId)
+                .HasColumnName("ID_CLIENT")
+                .HasMaxLength(100)
                 .IsRequired();
 
             builder
