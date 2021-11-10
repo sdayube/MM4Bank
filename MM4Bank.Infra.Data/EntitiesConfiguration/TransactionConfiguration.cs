@@ -20,6 +20,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
 
             //as duas linhas abaixo significam que o Id será a chave primária da tabela e que o nome terá tamanho máximo de 100 e será obrigatória (Not Null)
             base.Configure(builder);
+            builder.ToTable("TB_TRANSACTION");
 
             builder
                 .Property(p => p.Value)
