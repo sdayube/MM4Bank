@@ -18,7 +18,8 @@ namespace MM4Bank.Domain.Entities
         public Guid ClientId { get; private set; }
 
         //aqui pode ser mudado de name para AccountNumber
-        public Account(){}
+        private Account(){}
+
         public Account(string name)
         {
             ValidateDomain(name);
