@@ -13,9 +13,10 @@ namespace MM4Bank.Domain.Entities
         //listar propriedades de Account
         public string Name { get; private set; }
         public decimal Balance { get; private set; }
-        public List<Transaction> Transactions { get; private set; } = new List<Transaction>();
         public Client Client { get; private set; }
         public Guid ClientId { get; private set; }
+        public List<Transaction> Deposits { get;  set; }
+        public List<Transaction> Withdraws { get;  set; }
 
         //aqui pode ser mudado de name para AccountNumber
         private Account(){}
@@ -25,7 +26,6 @@ namespace MM4Bank.Domain.Entities
             ValidateDomain(name);
         }
 
-//  só pra testar
         public Account(Guid id, string name)
         {
             Id = id;

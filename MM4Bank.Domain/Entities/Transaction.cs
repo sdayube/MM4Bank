@@ -6,21 +6,19 @@ namespace MM4Bank.Domain.Entities
     {
         public decimal Value { get; private set; }
         public Guid SourceAccountId { get; private set; }
-        // public Account SourceAccount { get; private set; }
+        public Account SourceAccount { get; private set; }
         public Guid TargetAccountId { get; private set; }
-        // public Account TargetAccount { get; private set; }
+        public Account TargetAccount { get; private set; }
         public TransactionType Type { get; private set; }
 
         private Transaction(){}
 
-        public Transaction(decimal value, Account sourceAccount, Account targetAccount, TransactionType type)
+        public Transaction(decimal value, Guid sourceAccountId, Guid targetAccountId, TransactionType type)
         {
             ValidateDomain(value, sourceAccount);
             Value = value;
-            SourceAccountId = sourceAccount.Id;
-            // SourceAccount = sourceAccount;
-            TargetAccountId = targetAccount.Id;
-            // TargetAccount = targetAccount;
+            SourceAccountId = sourceAccountId;
+            TargetAccountId = targetAccountId;
             Type = type;
         }
 
