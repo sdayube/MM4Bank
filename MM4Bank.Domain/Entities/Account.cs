@@ -62,10 +62,10 @@ namespace MM4Bank.Domain.Entities
             Balance -= value;
             Transaction transaction = new Transaction(value, this, targetAccount, TransactionType.TRANSFER);
             Withdraws.Add(transaction);
-            targetAccount.ReceiveTransfer(value, this);
+            targetAccount.ReceiveTransfer(transaction);
         }
 
-        public void ReceiveTransfer(decimal value, Account sourceAccount, Transaction transaction)
+        public void ReceiveTransfer(Transaction transaction)
         {
             Balance += value;
             Deposits.Add(transaction);
