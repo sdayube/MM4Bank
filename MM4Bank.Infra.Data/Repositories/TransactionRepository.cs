@@ -43,12 +43,6 @@ namespace MM4Bank.Infra.Data.Repositories
             return transaction;
         }
 
-        public async Task<Transaction> Update(Transaction transaction)
-        {
-            _transactionContext.Update(transaction);
-            await _transactionContext.SaveChangesAsync();
-            return transaction;
-        }
     }
 }
 
