@@ -13,26 +13,25 @@ public sealed class Client : Entity
         public Name Name { get; private set; }
         public CPF CPF { get; private set; }
         public Account Account { get; private set; }
-        private int AccountId { get; set; }
-        public Address Address { get; set; }
-        public Password Password { get; set; }
+        public Guid AccountId { get; private set; }
+        public Address Address { get; private set; }
+        public Password Password { get; private set; }
 
+        private Client(){}
 
         public Client(string name, string cpf, Account account, string address, string password)
         {
-            ValidateDomain(name, cpf, account, address, password);
-        }
-
-        public Client(int id, string name, string cpf, Account account, string address, string password)
-        {
-            DomainExceptionValidation.When(id < 0, "Invalid Id Value");
-            Id = id;
-            ValidateDomain(name, cpf, account, address, password);
+            Update(name, cpf, account, address, password);
         }
 
         public void Update(string name, string cpf, Account account, string address, string password)
         {
             ValidateDomain(name, cpf, account, address, password);
+            Name = new Name(name);
+            CPF = new CPF(cpf);
+            Account = account;
+            Address = new Address(address);
+            Password = new Password(password);
             AccountId = account.Id;
         }
 
@@ -43,13 +42,8 @@ public sealed class Client : Entity
             DomainExceptionValidation.When(account is null, "Invalid account");
             DomainExceptionValidation.When(string.IsNullOrEmpty(address), "Invalid address");
             DomainExceptionValidation.When(string.IsNullOrEmpty(password), "Invalid password");
-            DomainExceptionValidation.When(password.Length < 8, "Passowrd must be at least 8 characters long");
+            DomainExceptionValidation.When(password.Length < 8, "Password must be at least 8 characters long");
 
-            Name = new Name(name);
-            CPF = new CPF(cpf);
-            Account = account;
-            Address = new Address(address);
-            Password = new Password(password);
         }
     }
 }

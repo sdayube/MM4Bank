@@ -8,7 +8,7 @@ namespace MM4Bank.Domain.ValueObjects
 {
     public class Password : ValueObject
     {
-        public string _password { get; set; }
+        public string _password { get; private set; }
         public Password(string password)
         {
             if (isValid(password))
