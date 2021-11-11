@@ -26,11 +26,6 @@ namespace MM4Bank.Infra.Data.Repositories
 
         public async Task<Client> GetByIdAsync(Guid? id)
         {
-            return await _clientContext.Clients.FindAsync(id.ToString());
-        }
-
-        public async Task<Client> GetClientAccountAsync(Guid? id)
-        {
             return await _clientContext.Clients.Include(a => a.Account).SingleOrDefaultAsync(c => c.Id == id);
         }
 
