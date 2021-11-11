@@ -44,7 +44,7 @@ namespace MM4Bank.Domain.Entities
         public void Withdraw(decimal value)
         {
             ValidateTransfer(value);
-            ValidateBalance(value)
+            ValidateBalance(value);
             Balance -= value;
             Withdraws.Add(new Transaction(value, this, null, TransactionType.WITHDRAW));
         }
@@ -58,11 +58,11 @@ namespace MM4Bank.Domain.Entities
         public void SendTransfer(decimal value, Account targetAccount)
         {
             ValidateTransfer(value);
-            ValidateBalance(value)
+            ValidateBalance(value);
             Balance -= value;
             Transaction transaction = new Transaction(value, this, targetAccount, TransactionType.TRANSFER);
             Withdraws.Add(transaction);
-            targetAccount.ReceiveTransfer(value, this)
+            targetAccount.ReceiveTransfer(value, this);
         }
 
         public void ReceiveTransfer(decimal value, Account sourceAccount, Transaction transaction)
