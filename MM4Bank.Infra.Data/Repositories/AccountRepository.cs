@@ -30,7 +30,7 @@ namespace MM4Bank.Infra.Data.Repositories
             return await _accountContext.Accounts.ToListAsync();
         }
 
-        public async Task<Account> GetById(int? id)
+        public async Task<Account> GetById(Guid? id)
         {
             return await _accountContext.Accounts.FindAsync(id);
         }

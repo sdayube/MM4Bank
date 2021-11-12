@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MM4Bank.Domain.Entities;
 using MM4Bank.Domain.Interfaces;
+using MM4Bank.Domain.ValueObjects;
 using MM4Bank.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,11 @@ namespace MM4Bank.Infra.Data.Repositories
         public async Task<Client> GetByIdAsync(Guid? id)
         {
             return await _clientContext.Clients.Include(a => a.Account).SingleOrDefaultAsync(c => c.Id == id);
+        }
+
+        public async Task<Client> GetClientByCPFAsync(CPF cpf)
+        {
+            return await _clientContext.Clients.SingleOrDefaultAsync(c => c.CPF == cpf);
         }
 
         public async Task<IEnumerable<Client>> GetClientsAsync()
