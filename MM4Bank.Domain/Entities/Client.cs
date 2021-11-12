@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MM4Bank.Domain.Entities
 {
-public sealed class Client : Entity
+    public sealed class Client : Entity
     {
         public Name Name { get; private set; }
         public CPF CPF { get; private set; }
@@ -17,7 +17,7 @@ public sealed class Client : Entity
         public Address Address { get; private set; }
         public Password Password { get; private set; }
 
-        private Client(){}
+        private Client() { }
 
         public Client(string name, string cpf, Account account, string address, string password)
         {
@@ -33,12 +33,13 @@ public sealed class Client : Entity
             Address = new Address(address);
             Password = new Password(password);
             AccountId = account.Id;
+            this.UpdateEntity();
         }
 
-        private void ValidateDomain(string name, string cpf, Account account, string address, string password)
+        private static void ValidateDomain(string name, string cpf, Account account, string address, string password)
         {
             DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid name");
-            DomainExceptionValidation.When(cpf.Length != 11 , "Please enter a valid cpf");
+            DomainExceptionValidation.When(cpf.Length != 11, "Please enter a valid cpf");
             DomainExceptionValidation.When(account is null, "Invalid account");
             DomainExceptionValidation.When(string.IsNullOrEmpty(address), "Invalid address");
             DomainExceptionValidation.When(string.IsNullOrEmpty(password), "Invalid password");

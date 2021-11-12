@@ -47,12 +47,14 @@ namespace MM4Bank.Domain.Entities
             ValidateBalance(value);
             Balance -= value;
             Withdrawals.Add(new Transaction(value, this, null, TransactionType.WITHDRAWAL));
+            this.UpdateEntity();
         }
         public void Deposit(decimal value)
         {
             ValidateTransfer(value);
             Balance += value;
             Deposits.Add(new Transaction(value, null, this, TransactionType.DEPOSIT));
+            this.UpdateEntity();
         }
 
         public void SendTransfer(decimal value, Account targetAccount)
@@ -63,6 +65,8 @@ namespace MM4Bank.Domain.Entities
             Transaction transaction = new Transaction(value, this, targetAccount, TransactionType.TRANSFER);
             Withdrawals.Add(transaction);
             targetAccount.ReceiveTransfer(transaction);
+            this.UpdateEntity();
+            targetAccount.UpdateEntity();
         }
 
         public void ReceiveTransfer(Transaction transaction)
