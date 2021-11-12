@@ -67,7 +67,7 @@ namespace MM4Bank.Domain.Entities
 
         public void ReceiveTransfer(Transaction transaction)
         {
-            Balance += value;
+            Balance += transaction.Value;
             Deposits.Add(transaction);
         }
     }
