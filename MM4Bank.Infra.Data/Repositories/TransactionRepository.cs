@@ -26,7 +26,7 @@ namespace MM4Bank.Infra.Data.Repositories
             return transaction;
         }
 
-        public async Task<Transaction> GetById(int? id)
+        public async Task<Transaction> GetById(Guid? id)
         {
             return await _transactionContext.Transactions.FindAsync(id);
         }
@@ -43,12 +43,6 @@ namespace MM4Bank.Infra.Data.Repositories
             return transaction;
         }
 
-        public async Task<Transaction> Update(Transaction transaction)
-        {
-            _transactionContext.Update(transaction);
-            await _transactionContext.SaveChangesAsync();
-            return transaction;
-        }
     }
 }
 
