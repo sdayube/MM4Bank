@@ -15,30 +15,30 @@ namespace MM4Bank.Domain.Entities
         public Client Client { get; private set; }
         public Guid ClientId { get; private set; }
         public List<Transaction> Deposits { get; private set; }
-        public List<Transaction> Withdraws { get; private set; }
+        public List<Transaction> Withdrawals { get; private set; }
 
-        private Account(){}
+        private Account() { }
 
         public Account(int accountNumber)
         {
             ValidateDomain(accountNumber);
-        }
-
-        private void ValidateDomain(int accountNumber)
-        {
-            DomainExceptionValidation.When(accountNumber < 1, "Invalid account number!");
 
             AccountNumber = accountNumber;
         }
 
-        private void ValidateTransfer(decimal value)
+        private static void ValidateDomain(int accountNumber)
+        {
+            DomainExceptionValidation.When(accountNumber < 1, "Invalid account number!");
+        }
+
+        private static void ValidateTransfer(decimal value)
         {
             DomainExceptionValidation.When(value <= 0, $"Invalid transfer value: {value}");
         }
 
         private void ValidateBalance(decimal value)
         {
-            DomainExceptionValidation.When(Balance - value < 0,"Balance not enough!");
+            DomainExceptionValidation.When(Balance - value < 0, "Balance not enough!");
         }
 
         public void Withdraw(decimal value)
@@ -46,7 +46,7 @@ namespace MM4Bank.Domain.Entities
             ValidateTransfer(value);
             ValidateBalance(value);
             Balance -= value;
-            Withdraws.Add(new Transaction(value, this, null, TransactionType.WITHDRAW));
+            Withdrawals.Add(new Transaction(value, this, null, TransactionType.WITHDRAWAL));
         }
         public void Deposit(decimal value)
         {
@@ -61,7 +61,7 @@ namespace MM4Bank.Domain.Entities
             ValidateBalance(value);
             Balance -= value;
             Transaction transaction = new Transaction(value, this, targetAccount, TransactionType.TRANSFER);
-            Withdraws.Add(transaction);
+            Withdrawals.Add(transaction);
             targetAccount.ReceiveTransfer(transaction);
         }
 

@@ -4,6 +4,6 @@ namespace MM4Bank.Domain.Entities
     {
         DEPOSIT,
         TRANSFER,
-        WITHDRAW
+        WITHDRAWAL
     }
 }

@@ -36,7 +36,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
 
             builder
                 .HasOne(p => p.SourceAccount)
-                .WithMany(p => p.Withdraws)
+                .WithMany(p => p.Withdrawals)
                 .HasForeignKey(p => p.SourceAccountId)
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
