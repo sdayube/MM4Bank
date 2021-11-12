@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MM4Bank.Domain.ValueObjects
@@ -17,19 +18,12 @@ namespace MM4Bank.Domain.ValueObjects
 
         public static bool TryParse(string value, out CPF result)
         {
-            if (string.IsNullOrEmpty(value) || value.Length != 11)
+            if (string.IsNullOrEmpty(value) || !Regex.IsMatch(value, @"^\d{11}$"))
             {
-                result = default(CPF);
+                result = default;
                 return false;
             }
-            foreach(char digit in value)
-            {
-                if (!Char.IsDigit(digit))
-                {
-                    result = default(CPF);
-                    return false;
-                }
-            }
+
             result = new CPF(value);
             return true;
         }

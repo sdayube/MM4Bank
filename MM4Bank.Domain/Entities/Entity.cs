@@ -12,5 +12,10 @@ namespace MM4Bank.Domain.Entities
         public DateTime CreatedAt { get; protected set; } = DateTime.Now;
         public DateTime UpdatedAt { get; protected set; } = DateTime.Now;
         public bool IsActive { get; protected set; } = true;
+
+        public void UpdateEntity()
+        {
+            UpdatedAt = DateTime.Now;
+        }
     }
 }
