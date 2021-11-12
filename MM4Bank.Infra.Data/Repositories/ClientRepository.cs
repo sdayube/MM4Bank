@@ -35,6 +35,11 @@ namespace MM4Bank.Infra.Data.Repositories
             return await _clientContext.Clients.SingleOrDefaultAsync(c => c.CPF == cpf);
         }
 
+        public async Task<Client> GetClientByNameAsync(Name name)
+        {
+            return await _clientContext.Clients.SingleOrDefaultAsync(c => c.Name == name);
+        }
+
         public async Task<IEnumerable<Client>> GetClientsAsync()
         {
             return await _clientContext.Clients.ToListAsync();
