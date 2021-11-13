@@ -7,9 +7,8 @@ namespace MM4Bank.Domain.Interfaces
     public interface ITransactionRepository
     {
         Task<IEnumerable<Transaction>> GetTransactions();
-        Task<Transaction> GetById(int? id);
+        Task<Transaction> GetById(Guid? id);
         Task<Transaction> Create(Transaction transaction);
-        Task<Transaction> Update(Transaction transaction);
         Task<Transaction> Remove(Transaction transaction);
 
     }
