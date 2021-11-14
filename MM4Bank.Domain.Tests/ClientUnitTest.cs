@@ -9,11 +9,11 @@ namespace MM4Bank.Domain.Tests
     {
         string name = "Júlio Kauer";
         string cpf = "12345678900";
-        Account account = new(123);
+        Account account = new();
         string address = "Av Integração";
         string password = "senhaSegura";
 
-        [Fact(DisplayName ="Create Client With Valid Parameters")]
+        [Fact(DisplayName = "Create Client With Valid Parameters")]
         public void CreateAccount_WithValidParameters_ResultObjectValidState()
         {
             Action action = () =>
@@ -25,7 +25,7 @@ namespace MM4Bank.Domain.Tests
                 .NotThrow<MM4Bank.Domain.Validation.DomainExceptionValidation>();
         }
 
-        [Fact(DisplayName ="Create Client With empty name")]
+        [Fact(DisplayName = "Create Client With empty name")]
         public void CreateAccount_WithEmptyName_ResultObjectValidState()
         {
             var name = "";
@@ -39,7 +39,7 @@ namespace MM4Bank.Domain.Tests
                 .WithMessage("Invalid name");
         }
 
-        [Fact(DisplayName ="Create Client With null name")]
+        [Fact(DisplayName = "Create Client With null name")]
         public void CreateAccount_WithNullName_ResultObjectValidState()
         {
             Action action = () =>
@@ -52,7 +52,7 @@ namespace MM4Bank.Domain.Tests
                 .WithMessage("Invalid name");
         }
 
-        [Fact(DisplayName ="Create Client With invalid CPF")]
+        [Fact(DisplayName = "Create Client With invalid CPF")]
         public void CreateAccount_WithInvalidCPF_ResultObjectValidState()
         {
             var invalidCpf = "123456";
@@ -66,7 +66,7 @@ namespace MM4Bank.Domain.Tests
                 .WithMessage("Please enter a valid cpf");
         }
 
-        [Fact(DisplayName ="Create Client With invalid account")]
+        [Fact(DisplayName = "Create Client With invalid account")]
         public void CreateAccount_WithInvalidAccount_ResultObjectValidState()
         {
             Action action = () =>
@@ -79,7 +79,7 @@ namespace MM4Bank.Domain.Tests
                 .WithMessage("Invalid account");
         }
 
-        [Fact(DisplayName ="Create Client With empty address")]
+        [Fact(DisplayName = "Create Client With empty address")]
         public void CreateAccount_WithEmptyAddress_ResultObjectValidState()
         {
             var emptyAddress = "";
@@ -93,7 +93,7 @@ namespace MM4Bank.Domain.Tests
                 .WithMessage("Invalid address");
         }
 
-        [Fact(DisplayName ="Create Client With null address")]
+        [Fact(DisplayName = "Create Client With null address")]
         public void CreateAccount_WithNullAddress_ResultObjectValidState()
         {
             Action action = () =>
@@ -106,7 +106,7 @@ namespace MM4Bank.Domain.Tests
                 .WithMessage("Invalid address");
         }
 
-        [Fact(DisplayName ="Create Client With empty password")]
+        [Fact(DisplayName = "Create Client With empty password")]
         public void CreateAccount_WithEmptyPassword_ResultObjectValidState()
         {
             var emptyPassword = "";
@@ -120,7 +120,7 @@ namespace MM4Bank.Domain.Tests
                 .WithMessage("Invalid password");
         }
 
-        [Fact(DisplayName ="Create Client With null password")]
+        [Fact(DisplayName = "Create Client With null password")]
         public void CreateAccount_WithNullPassword_ResultObjectValidState()
         {
             Action action = () =>
@@ -133,7 +133,7 @@ namespace MM4Bank.Domain.Tests
                 .WithMessage("Invalid password");
         }
 
-        [Fact(DisplayName ="Create Client With too short password")]
+        [Fact(DisplayName = "Create Client With too short password")]
         public void CreateAccount_WithTooShortPassword_ResultObjectValidState()
         {
             var shortPassword = "1234";

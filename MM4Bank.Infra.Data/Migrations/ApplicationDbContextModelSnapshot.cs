@@ -27,8 +27,10 @@ namespace MM4Bank.Infra.Data.Migrations
                         .HasColumnName("ID");
 
                     b.Property<int>("AccountNumber")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("NR_ACCOUNT");
+                        .HasColumnName("NR_ACCOUNT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("Balance")
                         .HasPrecision(10, 2)
@@ -128,12 +130,14 @@ namespace MM4Bank.Infra.Data.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("ST_ISACTIVE");
 
-                    b.Property<Guid>("SourceAccountId")
+                    b.Property<Guid?>("SourceAccountId")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ID_SOURCE_ACCOUNT");
 
-                    b.Property<Guid>("TargetAccountId")
+                    b.Property<Guid?>("TargetAccountId")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ID_TARGET_ACCOUNT");

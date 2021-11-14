@@ -13,14 +13,7 @@ namespace MM4Bank.Domain.Entities
         public List<Transaction> Deposits { get; private set; } = new List<Transaction>();
         public List<Transaction> Withdrawals { get; private set; } = new List<Transaction>();
 
-        private Account() { }
-
-        public Account(int accountNumber)
-        {
-            ValidateDomain(accountNumber);
-
-            AccountNumber = accountNumber;
-        }
+        public Account() { }
 
         private static void ValidateDomain(int accountNumber)
         {
@@ -63,7 +56,7 @@ namespace MM4Bank.Domain.Entities
         public void SendTransfer(decimal value, Account targetAccount)
         {
             ValidateTransfer(value, targetAccount);
-            Transaction transaction = new (value, this, targetAccount, TransactionType.TRANSFER);
+            Transaction transaction = new(value, this, targetAccount, TransactionType.TRANSFER);
             Balance -= value;
             Withdrawals.Add(transaction);
             targetAccount.ReceiveTransfer(transaction);
