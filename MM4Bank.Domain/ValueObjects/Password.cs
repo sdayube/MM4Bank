@@ -11,7 +11,7 @@ namespace MM4Bank.Domain.ValueObjects
         public string _password { get; private set; }
         public Password(string password)
         {
-            if (isValid(password))
+            if (IsValid(password))
             {
                 _password = password;
             }
