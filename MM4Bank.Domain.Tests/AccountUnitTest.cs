@@ -120,4 +120,3 @@ namespace MM4Bank.Domain.Tests
         }
     }
 }
-diff --git a/MM4Bank.Domain.Tests/TransactionUnitTest.cs b/MM4Bank.Domain.Tests/TransactionUnitTest.cs
