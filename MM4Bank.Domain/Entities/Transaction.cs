@@ -12,9 +12,9 @@ namespace MM4Bank.Domain.Entities
         public Account TargetAccount { get; private set; }
         public TransactionType Type { get; private set; }
 
-        private Transaction(){}
+        private Transaction() { }
 
-        public Transaction(decimal value, Account? sourceAccount, Account? targetAccount, TransactionType type)
+        public Transaction(decimal value, Account sourceAccount, Account targetAccount, TransactionType type)
         {
             ValidateDomain(value, sourceAccount);
             Value = value;
