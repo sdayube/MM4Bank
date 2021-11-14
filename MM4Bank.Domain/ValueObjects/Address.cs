@@ -10,7 +10,7 @@ namespace MM4Bank.Domain.ValueObjects
     {
         public Address(string fullAddress)
         {
-            if (isValid(fullAddress))
+            if (IsValid(fullAddress))
             {
                 SetFrom(fullAddress);
             }
