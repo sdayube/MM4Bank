@@ -17,12 +17,10 @@ namespace MM4Bank.Application.DTOs
 
         public Guid SourceAccountId { get; private set; }
 
-        [Required(ErrorMessage = "Source account is required!")]
         public Account SourceAccount { get; private set; }
 
         public Guid TargetAccountId { get; private set; }
 
-        [Required(ErrorMessage = "Target account is required!")]
         public Account TargetAccount { get; private set; }
 
         [Required(ErrorMessage = "Transaction type is required!")]

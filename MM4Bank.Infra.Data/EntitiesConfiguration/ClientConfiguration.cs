@@ -59,8 +59,8 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .HasColumnName("DS_PASSWORD")
                 .HasMaxLength(11)
                 .HasConversion(
-                    p => p._password ,
-                    p => new Password(p) 
+                    p => p._password,
+                    p => new Password(p)
                 )
                 .IsRequired();
 
