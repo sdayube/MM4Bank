@@ -55,6 +55,13 @@ namespace MM4Bank.Application.Services
 
         public async Task AddAsync(ClientDTO clientDTO)
         {
+            var allCPFs = await GetClientsAsync();
+
+            if (allCPFs.Any<ClientDTO>(c => c.CPF == clientDTO.CPF))
+            {
+                throw new InvalidOperationException("A client with this CPF already exists");
+            }
+
             var clientEntity = _mapper.Map<Client>(clientDTO);
             await _clientRepository.CreateAsync(clientEntity);
         }
