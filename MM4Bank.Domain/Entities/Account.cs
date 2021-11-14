@@ -1,21 +1,17 @@
 ﻿using MM4Bank.Domain.Validation;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
 
 namespace MM4Bank.Domain.Entities
 {
     public sealed class Account : Entity
     {
         public int AccountNumber { get; private set; }
-        public decimal Balance { get; private set; } = 0;
+        public decimal Balance { get; private set; } = 0m;
         public Client Client { get; private set; }
         public Guid ClientId { get; private set; }
-        public List<Transaction> Deposits { get; private set; }
-        public List<Transaction> Withdrawals { get; private set; }
+        public List<Transaction> Deposits { get; private set; } = new List<Transaction>();
+        public List<Transaction> Withdrawals { get; private set; } = new List<Transaction>();
 
         private Account() { }
 
@@ -31,9 +27,9 @@ namespace MM4Bank.Domain.Entities
             DomainExceptionValidation.When(accountNumber < 1, "Invalid account number!");
         }
 
-        private static void ValidateTransfer(decimal value)
+        private static void ValidateTransaction(decimal value)
         {
-            DomainExceptionValidation.When(value <= 0, $"Invalid transfer value: {value}");
+            DomainExceptionValidation.When(value <= 0, $"Invalid transaction value: {value}");
         }
 
         private void ValidateBalance(decimal value)
@@ -41,28 +37,34 @@ namespace MM4Bank.Domain.Entities
             DomainExceptionValidation.When(Balance - value < 0, "Balance not enough!");
         }
 
+        private void ValidateTransfer(decimal value, Account targetAccount)
+        {
+            ValidateTransaction(value);
+            ValidateBalance(value);
+            DomainExceptionValidation.When(targetAccount == null, "targetAccount is null!");
+        }
+
         public void Withdraw(decimal value)
         {
-            ValidateTransfer(value);
+            ValidateTransaction(value);
             ValidateBalance(value);
-            Balance -= value;
             Withdrawals.Add(new Transaction(value, this, null, TransactionType.WITHDRAWAL));
+            Balance -= value;
             this.UpdateEntity();
         }
         public void Deposit(decimal value)
         {
-            ValidateTransfer(value);
-            Balance += value;
+            ValidateTransaction(value);
             Deposits.Add(new Transaction(value, null, this, TransactionType.DEPOSIT));
+            Balance += value;
             this.UpdateEntity();
         }
 
         public void SendTransfer(decimal value, Account targetAccount)
         {
-            ValidateTransfer(value);
-            ValidateBalance(value);
+            ValidateTransfer(value, targetAccount);
+            Transaction transaction = new (value, this, targetAccount, TransactionType.TRANSFER);
             Balance -= value;
-            Transaction transaction = new Transaction(value, this, targetAccount, TransactionType.TRANSFER);
             Withdrawals.Add(transaction);
             targetAccount.ReceiveTransfer(transaction);
             this.UpdateEntity();

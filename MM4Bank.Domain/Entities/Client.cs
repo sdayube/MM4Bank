@@ -1,10 +1,6 @@
 ﻿using MM4Bank.Domain.Validation;
 using MM4Bank.Domain.ValueObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MM4Bank.Domain.Entities
 {
@@ -30,9 +26,9 @@ namespace MM4Bank.Domain.Entities
             Name = new Name(name);
             CPF = new CPF(cpf);
             Account = account;
+            AccountId = account.Id;
             Address = new Address(address);
             Password = new Password(password);
-            AccountId = account.Id;
             this.UpdateEntity();
         }
 
