@@ -14,7 +14,9 @@ namespace MM4Bank.Domain.ValueObjects
             {
                 SetFrom(fullAddress);
             }
-            throw new System.ArgumentException(nameof(fullAddress));
+            // throw new System.ArgumentException(nameof(fullAddress));
+            // tá estourando erro sempre,
+            // é só por um else?
         }
 
 
@@ -39,6 +41,8 @@ namespace MM4Bank.Domain.ValueObjects
             var address = fullAddress.Split(",");
 
             Country = address[0];
+            // se não tem vírgulas os índices maiores que 0 são nulos
+            // tem que pensar o que fazer aqui
             State = address[1];
             City = address[2];
             Neighbourhood = address[3];

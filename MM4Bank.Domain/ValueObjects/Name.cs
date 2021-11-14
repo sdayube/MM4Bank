@@ -12,12 +12,16 @@ namespace MM4Bank.Domain.ValueObjects
             {
                 SetFrom(fullName);
             }
-            throw new System.ArgumentException(nameof(fullName));
+            // throw new System.ArgumentException(nameof(fullName));
+            // tá estourando erro sempre,
+            // é só por um else?
         }
 
         public void SetFrom(string fullName)
         {
             var name = fullName.Split(" ");
+            // se não tem 2 nomes o índice 1 fica nulo
+            // tem que pensar o que fazer aqui
             FirstName = name[0];
             LastName = name[1];
         }
