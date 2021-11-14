@@ -7,7 +7,7 @@ namespace MM4Bank.Domain.Tests
 {
     public class AccountUnitTest
     {
-        [Fact(DisplayName ="Create Account With Valid Parameters")]
+        [Fact(DisplayName = "Create Account With Valid Parameters")]
         public void CreateAccount_WithValidParameters_ResultObjectValidState()
         {
             Action action = () => new Account(1);
@@ -17,9 +17,9 @@ namespace MM4Bank.Domain.Tests
 
         [Fact(DisplayName = "Create Account With Invalid Account Number")]
         public void CreateAccount_InvalidAccountNumber_ResultObjectInvalidState()
-        {            
+        {
             Action action = () => new Account(-1);
-            action.Should().Throw < MM4Bank.Domain.Validation.DomainExceptionValidation>()
+            action.Should().Throw<MM4Bank.Domain.Validation.DomainExceptionValidation>()
                 .WithMessage("Invalid account number!");
         }
 
@@ -120,4 +120,3 @@ namespace MM4Bank.Domain.Tests
         }
     }
 }
-diff --git a/MM4Bank.Domain.Tests/TransactionUnitTest.cs b/MM4Bank.Domain.Tests/TransactionUnitTest.cs
