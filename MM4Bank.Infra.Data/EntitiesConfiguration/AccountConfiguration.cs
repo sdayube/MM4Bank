@@ -27,7 +27,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
             builder
                 .Property(p => p.Balance)
                 .HasColumnName("VL_BALANCE")
-                .HasPrecision(10,2)
+                .HasPrecision(10, 2)
                 .IsRequired();
 
             builder
@@ -42,14 +42,6 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .HasForeignKey<Client>(p => p.AccountId)
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
-
-            //o builder HasData popula a tabela com os dados iniciais quando acontecer a primeira migration
-            builder.HasData(
-                new Account(1),
-                new Account(2),
-                new Account(3)
-                );
-
         }
     }
 }
