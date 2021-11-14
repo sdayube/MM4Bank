@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 namespace MM4Bank.Infra.IoC
 {
     public static class DependencyInjection
-    //aqui não precisa adaptar
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
