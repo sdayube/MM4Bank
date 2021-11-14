@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MM4Bank.Application.Interfaces;
+using MM4Bank.Application.Mappings;
+using MM4Bank.Application.Services;
 using MM4Bank.Domain.Interfaces;
 using MM4Bank.Infra.Data.Context;
 using MM4Bank.Infra.Data.Repositories;
@@ -13,7 +16,7 @@ using System.Threading.Tasks;
 namespace MM4Bank.Infra.IoC
 {
     public static class DependencyInjection
-        //aqui não precisa adaptar
+    //aqui não precisa adaptar
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
@@ -23,6 +26,12 @@ namespace MM4Bank.Infra.IoC
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
+
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<ITransactionService, TransactionService>();
+
+            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             return services;
         }
