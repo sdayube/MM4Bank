@@ -14,9 +14,10 @@ namespace MM4Bank.Domain.ValueObjects
             {
                 SetFrom(fullAddress);
             }
-            // throw new System.ArgumentException(nameof(fullAddress));
-            // tá estourando erro sempre,
-            // é só por um else?
+            else
+            {
+                throw new System.ArgumentException(nameof(fullAddress));
+            }
         }
 
 

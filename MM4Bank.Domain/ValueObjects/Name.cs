@@ -12,9 +12,10 @@ namespace MM4Bank.Domain.ValueObjects
             {
                 SetFrom(fullName);
             }
-            // throw new System.ArgumentException(nameof(fullName));
-            // tá estourando erro sempre,
-            // é só por um else?
+            else
+            {
+                throw new System.ArgumentException(nameof(fullName));
+            }
         }
 
         public void SetFrom(string fullName)

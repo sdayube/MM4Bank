@@ -15,9 +15,10 @@ namespace MM4Bank.Domain.ValueObjects
             {
                 _password = password;
             }
-            // throw new System.ArgumentException(nameof(password));
-            // tá estourando erro sempre,
-            // é só por um else?
+            else
+            {
+                throw new System.ArgumentException(nameof(password));
+            }
         }
 
     }
