@@ -10,7 +10,7 @@ namespace MM4Bank.Domain.Tests
         string name = "Júlio Kauer";
         string cpf = "12345678900";
         Account account = new(123);
-        string address = "Av Integração";
+        string address = "Av Integração,,,,,,,";
         string password = "senhaSegura";
 
         [Fact(DisplayName ="Create Client With Valid Parameters")]
@@ -22,7 +22,33 @@ namespace MM4Bank.Domain.Tests
             };
 
             action.Should()
-                .NotThrow<MM4Bank.Domain.Validation.DomainExceptionValidation>();
+                .NotThrow<System.Exception>();
+        }
+
+        [Fact(DisplayName ="Create Client Without last name")]
+        public void CreateAccount_WithoutLastName_ThrowsError()
+        {
+            Action action = () =>
+            {
+                new Client("Júlio", cpf, account, address, password);
+            };
+
+            action.Should()
+                .Throw<System.IndexOutOfRangeException>()
+                .WithMessage("Index was outside the bounds of the array.");
+        }
+
+        [Fact(DisplayName ="Create Client With incomplete address")]
+        public void CreateAccount_WithIncompleteAddress_ThrowsError()
+        {
+            Action action = () =>
+            {
+                new Client(name, cpf, account, "Av Integração", password);
+            };
+
+            action.Should()
+                .Throw<System.IndexOutOfRangeException>()
+                .WithMessage("Index was outside the bounds of the array.");
         }
 
         [Fact(DisplayName ="Create Client With empty name")]

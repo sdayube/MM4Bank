@@ -19,7 +19,7 @@ namespace MM4Bank.Domain.Tests
                 new Transaction(1000m, account1, account2, TransactionType.TRANSFER);
             };
             action.Should()
-                .NotThrow<MM4Bank.Domain.Validation.DomainExceptionValidation>();
+                .NotThrow<System.Exception>();
         }
 
         [Fact(DisplayName = "Create transaction with negative value")]
