@@ -1,4 +1,5 @@
 ﻿using System;
+using MM4Bank.Domain.Enum;
 using MM4Bank.Domain.Validation;
 
 namespace MM4Bank.Domain.Entities

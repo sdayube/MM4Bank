@@ -1,4 +1,4 @@
-namespace MM4Bank.Domain.Entities
+namespace MM4Bank.Domain.Enum
 {
     public enum TransactionType
     {

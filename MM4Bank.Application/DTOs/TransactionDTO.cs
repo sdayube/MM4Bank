@@ -1,4 +1,5 @@
 ﻿using MM4Bank.Domain.Entities;
+using MM4Bank.Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -1,4 +1,5 @@
-﻿using MM4Bank.Domain.Validation;
+﻿using MM4Bank.Domain.Enum;
+using MM4Bank.Domain.Validation;
 using System;
 using System.Collections.Generic;
 
@@ -14,11 +15,6 @@ namespace MM4Bank.Domain.Entities
         public List<Transaction> Withdrawals { get; private set; } = new List<Transaction>();
 
         public Account() { }
-
-        private static void ValidateDomain(int accountNumber)
-        {
-            DomainExceptionValidation.When(accountNumber < 1, "Invalid account number!");
-        }
 
         private static void ValidateTransaction(decimal value)
         {
