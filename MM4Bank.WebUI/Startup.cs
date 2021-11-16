@@ -52,7 +52,7 @@ namespace MM4Bank.WebUI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Accounts}/{action=Index}/{id?}");
             });
         }
     }

@@ -10,8 +10,8 @@ namespace MM4Bank.Domain.Tests
         [Fact(DisplayName = "Create valid transaction")]
         public void CreateTransaction_WithValidParameters_ResultObjectValidState()
         {
-            Account account1 = new(123);
-            Account account2 = new(321);
+            Account account1 = new();
+            Account account2 = new();
 
             account1.Deposit(2000m);
             Action action = () =>
@@ -25,8 +25,8 @@ namespace MM4Bank.Domain.Tests
         [Fact(DisplayName = "Create transaction with negative value")]
         public void CreateTransaction_WithNegativeValue_ResultObjectValidState()
         {
-            Account account1 = new(123);
-            Account account2 = new(321);
+            Account account1 = new();
+            Account account2 = new();
 
             decimal value = -1000m;
             account1.Deposit(2000m);
@@ -42,8 +42,8 @@ namespace MM4Bank.Domain.Tests
         [Fact(DisplayName = "Create transaction with no balance")]
         public void CreateTransaction_WithNoBalance_ResultObjectValidState()
         {
-            Account account1 = new(123);
-            Account account2 = new(321);
+            Account account1 = new();
+            Account account2 = new();
 
             Action action = () =>
             {

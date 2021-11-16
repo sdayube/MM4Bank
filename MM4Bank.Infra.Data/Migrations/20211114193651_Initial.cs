@@ -12,7 +12,8 @@ namespace MM4Bank.Infra.Data.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    NR_ACCOUNT = table.Column<int>(type: "int", nullable: false),
+                    NR_ACCOUNT = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     VL_BALANCE = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     ID_CLIENT = table.Column<Guid>(type: "uniqueidentifier", maxLength: 100, nullable: false),
                     DT_CREATED = table.Column<DateTime>(type: "datetime2", nullable: false),

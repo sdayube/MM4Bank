@@ -12,7 +12,6 @@ namespace MM4Bank.Application.DTOs
     {
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = "Account Number is required!")]
         public int AccountNumber { get; set; }
 
         [Required(ErrorMessage = "Balance is required!")]

@@ -15,6 +15,7 @@ namespace MM4Bank.Application.Mappings
         {
             CreateMap<Client, ClientDTO>().ReverseMap();
             CreateMap<Account, AccountDTO>().ReverseMap();
+            CreateMap<Transaction, TransactionDTO>().ReverseMap();
         }
     }
 }
