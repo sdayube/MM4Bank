@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MM4Bank.Infra.IoC", "MM4Ban
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MM4Bank.WebUI", "MM4Bank.WebUI\MM4Bank.WebUI.csproj", "{9DBB825A-491B-4990-A167-EAE875A541B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MM4Bank.Domain.Tests", "MM4Bank.Domain.Tests\MM4Bank.Domain.Tests.csproj", "{72AD64D5-3567-4C0B-904D-D93ECF2C31CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MM4Bank.Domain.Tests", "MM4Bank.Domain.Tests\MM4Bank.Domain.Tests.csproj", "{72AD64D5-3567-4C0B-904D-D93ECF2C31CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MM4Bank.WebAPI", "MM4Bank.WebAPI\MM4Bank.WebAPI.csproj", "{5A044CE8-EE8D-4498-BF36-25D5FE256C0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{72AD64D5-3567-4C0B-904D-D93ECF2C31CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72AD64D5-3567-4C0B-904D-D93ECF2C31CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72AD64D5-3567-4C0B-904D-D93ECF2C31CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A044CE8-EE8D-4498-BF36-25D5FE256C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A044CE8-EE8D-4498-BF36-25D5FE256C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A044CE8-EE8D-4498-BF36-25D5FE256C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A044CE8-EE8D-4498-BF36-25D5FE256C0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
