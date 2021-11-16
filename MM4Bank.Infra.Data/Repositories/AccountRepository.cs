@@ -18,31 +18,31 @@ namespace MM4Bank.Infra.Data.Repositories
             _accountContext = context;
         }
 
-        public async Task<Account> Create(Account account)
+        public async Task<Account> CreateAsync(Account account)
         {
             _accountContext.Add(account);
             await _accountContext.SaveChangesAsync();
             return account;
         }
 
-        public async Task<IEnumerable<Account>> GetAccounts()
+        public async Task<IEnumerable<Account>> GetAccountsAsync()
         {
             return await _accountContext.Accounts.ToListAsync();
         }
 
-        public async Task<Account> GetById(Guid? id)
+        public async Task<Account> GetByIdAsync(Guid? id)
         {
             return await _accountContext.Accounts.FindAsync(id);
         }
 
-        public async Task<Account> Remove(Account account)
+        public async Task<Account> RemoveAsync(Account account)
         {
             _accountContext.Remove(account);
             await _accountContext.SaveChangesAsync();
             return account;
         }
 
-        public async Task<Account> Update(Account account)
+        public async Task<Account> UpdateAsync(Account account)
         {
             _accountContext.Update(account);
             await _accountContext.SaveChangesAsync();

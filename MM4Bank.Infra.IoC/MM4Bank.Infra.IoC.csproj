@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MM4Bank.Application\MM4Bank.Application.csproj" />
     <ProjectReference Include="..\MM4Bank.Domain\MM4Bank.Domain.csproj" />
     <ProjectReference Include="..\MM4Bank.Infra.Data\MM4Bank.Infra.Data.csproj" />

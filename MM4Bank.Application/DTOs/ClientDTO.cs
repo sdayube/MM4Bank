@@ -11,7 +11,6 @@ namespace MM4Bank.Application.DTOs
 {
     public class ClientDTO
     {
-
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Name is required!")]

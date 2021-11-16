@@ -21,7 +21,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
             builder
                 .Property(p => p.AccountNumber)
                 .HasColumnName("NR_ACCOUNT")
-                .IsRequired();
+                .ValueGeneratedOnAdd();
             //se tivermos propriedades do tipo decimal (temos uma)
             // builder.Property(p => p.nomeDaPropriedadeQueTemDecimal).HasPrecision(10,2)
             builder

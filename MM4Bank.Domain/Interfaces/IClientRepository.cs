@@ -12,6 +12,7 @@ namespace MM4Bank.Domain.Interfaces
         Task<Client> GetByIdAsync(Guid? id);
         Task<Client> GetByCPFAsync(CPF cpf);
         Task<Client> GetByNameAsync(Name name);
+        Task<Client> GetClientAccountAsync(Guid? id);
         Task<Client> CreateAsync(Client client);
         Task<Client> UpdateAsync(Client client);
         Task<Client> RemoveAsync(Client client);
