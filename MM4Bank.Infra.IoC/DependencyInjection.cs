@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MM4Bank.Application.Interfaces;
@@ -31,6 +32,9 @@ namespace MM4Bank.Infra.IoC
             services.AddScoped<ITransactionService, TransactionService>();
 
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+
+            var myHandlers = AppDomain.CurrentDomain.Load("MM4Bank.Application");
+            services.AddMediatR(myHandlers);
 
             return services;
         }
