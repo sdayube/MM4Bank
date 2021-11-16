@@ -33,17 +33,5 @@ namespace MM4Bank.Application.Services
             var transactionEntity = await _transactionRepository.GetByIdAsync(id);
             return _mapper.Map<TransactionDTO>(transactionEntity);
         }
-
-        public async Task AddAsync(TransactionDTO transactionDTO)
-        {
-            var transactionEntity = _mapper.Map<Transaction>(transactionDTO);
-            await _transactionRepository.CreateAsync(transactionEntity);
-        }
-
-        public async Task RemoveAsync(Guid? id)
-        {
-            var transactionEntity = _transactionRepository.GetByIdAsync(id).Result;
-            await _transactionRepository.RemoveAsync(transactionEntity);
-        }
     }
 }
