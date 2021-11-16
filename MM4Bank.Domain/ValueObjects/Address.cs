@@ -14,7 +14,10 @@ namespace MM4Bank.Domain.ValueObjects
             {
                 SetFrom(fullAddress);
             }
-            throw new System.ArgumentException(nameof(fullAddress));
+            else
+            {
+                throw new System.ArgumentException(nameof(fullAddress));
+            }
         }
 
 
@@ -39,6 +42,8 @@ namespace MM4Bank.Domain.ValueObjects
             var address = fullAddress.Split(",");
 
             Country = address[0];
+            // se não tem vírgulas os índices maiores que 0 são nulos
+            // tem que pensar o que fazer aqui
             State = address[1];
             City = address[2];
             Neighbourhood = address[3];

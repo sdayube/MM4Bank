@@ -12,7 +12,7 @@ namespace MM4Bank.Domain.Tests
         {
             Action action = () => new Account();
             action.Should()
-                .NotThrow<MM4Bank.Domain.Validation.DomainExceptionValidation>();
+                .NotThrow<System.Exception>();
         }
 
         [Fact(DisplayName = "Realize a deposit")]
