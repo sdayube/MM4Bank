@@ -1,6 +1,7 @@
-using CleanArchMvc.Application.DTOs;
-using CleanArchMvc.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using MM4Bank.Application.DTOs;
+using MM4Bank.Application.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,18 +9,18 @@ namespace CleanArchMvc.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController : ControllerBase
+    public class AccountsController : ControllerBase
     {
-        private readonly ICategoryService _categoryService;
-        public CategoriesController(ICategoryService categoryService)
+        private readonly IAccountService _accountService;
+        public AccountsController(IAccountService accountService)
         {
-            _categoryService = categoryService;
+            _accountService = accountService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CategoryDTO>>> Get()
+        public async Task<ActionResult<IEnumerable<AccountDTO>>> Get()
         {
-            var categories = await _categoryService.GetCategories();
+            var categories = await _accountService.GetAccountsAsync();
             if (categories == null)
             {
                 return NotFound("Categories not found");
@@ -27,55 +28,55 @@ namespace CleanArchMvc.API.Controllers
             return Ok(categories);
         }
 
-        [HttpGet("{id:int}", Name = "GetCategory")]
-        public async Task<ActionResult<CategoryDTO>> Get(int id)
+        [HttpGet("{id:Guid}", Name = "GetAccount")]
+        public async Task<ActionResult<AccountDTO>> Get(Guid id)
         {
-            var category = await _categoryService.GetById(id);
-            if (category == null)
+            var account = await _accountService.GetByIdAsync(id);
+            if (account == null)
             {
-                return NotFound("Category not found");
+                return NotFound("Account not found");
             }
-            return Ok(category);
+            return Ok(account);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CategoryDTO categoryDto)
+        public async Task<ActionResult> Post([FromBody] AccountDTO accountDto)
         {
-            if (categoryDto == null)
+            if (accountDto == null)
                 return BadRequest("Invalid Data");
 
-            await _categoryService.Add(categoryDto);
+            await _accountService.AddAsync(accountDto);
 
-            return new CreatedAtRouteResult("GetCategory", new { id = categoryDto.Id }, 
-                categoryDto);
+            return new CreatedAtRouteResult("GetAccount", new { id = accountDto.Id }, 
+                accountDto);
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put(int id,[FromBody] CategoryDTO categoryDto)
+        public async Task<ActionResult> Put(Guid id,[FromBody] AccountDTO accountDto)
         {
-            if (id != categoryDto.Id)
+            if (id != accountDto.Id)
                 return BadRequest();
 
-            if (categoryDto == null)
+            if (accountDto == null)
                 return BadRequest();
 
-            await _categoryService.Update(categoryDto);
+            await _accountService.UpdateAsync(accountDto);
 
-            return Ok(categoryDto);
+            return Ok(accountDto);
         }          
         
-        [HttpDelete("{id:int}")]
-        public async Task<ActionResult<CategoryDTO>> Delete(int id)
+        [HttpDelete("{id:Guid}")]
+        public async Task<ActionResult<AccountDTO>> Delete(Guid id)
         {
-            var category = await _categoryService.GetById(id);
-            if(category == null)
+            var account = await _accountService.GetByIdAsync(id);
+            if(account == null)
             {
-                return NotFound("Category not found");
+                return NotFound("Account not found");
             }
             
-            await _categoryService.Remove(id);
+            await _accountService.RemoveAsync(id);
 
-            return Ok(category);
+            return Ok(account);
 
         }
     }
