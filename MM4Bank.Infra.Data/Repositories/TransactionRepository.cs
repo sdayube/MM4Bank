@@ -19,30 +19,15 @@ namespace MM4Bank.Infra.Data.Repositories
             _transactionContext = context;
         }
 
-        public async Task<Transaction> CreateAsync(Transaction transaction)
+        public async Task<IEnumerable<Transaction>> GetTransactionsAsync()
         {
-            _transactionContext.Add(transaction);
-            await _transactionContext.SaveChangesAsync();
-            return transaction;
+            return await _transactionContext.Transactions.ToListAsync();
         }
 
         public async Task<Transaction> GetByIdAsync(Guid? id)
         {
             return await _transactionContext.Transactions.FindAsync(id);
         }
-
-        public async Task<IEnumerable<Transaction>> GetTransactionsAsync()
-        {
-            return await _transactionContext.Transactions.ToListAsync();
-        }
-
-        public async Task<Transaction> RemoveAsync(Transaction transaction)
-        {
-            _transactionContext.Remove(transaction);
-            await _transactionContext.SaveChangesAsync();
-            return transaction;
-        }
-
     }
 }
 

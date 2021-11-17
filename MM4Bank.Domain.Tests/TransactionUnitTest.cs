@@ -1,5 +1,6 @@
 using FluentAssertions;
 using MM4Bank.Domain.Entities;
+using MM4Bank.Domain.Enum;
 using System;
 using Xunit;
 

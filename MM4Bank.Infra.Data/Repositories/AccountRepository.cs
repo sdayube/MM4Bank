@@ -12,17 +12,11 @@ namespace MM4Bank.Infra.Data.Repositories
 {
     public class AccountRepository : IAccountRepository
     {
-        ApplicationDbContext _accountContext;
+        readonly ApplicationDbContext _accountContext;
+
         public AccountRepository(ApplicationDbContext context)
         {
             _accountContext = context;
-        }
-
-        public async Task<Account> CreateAsync(Account account)
-        {
-            _accountContext.Add(account);
-            await _accountContext.SaveChangesAsync();
-            return account;
         }
 
         public async Task<IEnumerable<Account>> GetAccountsAsync()
@@ -35,16 +29,55 @@ namespace MM4Bank.Infra.Data.Repositories
             return await _accountContext.Accounts.FindAsync(id);
         }
 
+        public async Task<Account> CreateAsync(Account account)
+        {
+            _accountContext.Add(account);
+            await _accountContext.SaveChangesAsync();
+
+            var createdAccount = await GetByIdAsync(account.Id);
+            return createdAccount;
+        }
+
+        public async Task<Transaction> WithdrawAsync(Guid? id, decimal value)
+        {
+            var account = await GetByIdAsync(id);
+            var transaction = account.Withdraw(value);
+
+            _accountContext.Update(account);
+            _accountContext.Update(transaction);
+
+            await _accountContext.SaveChangesAsync();
+            return transaction;
+        }
+
+        public async Task<Transaction> DepositAsync(Guid? id, decimal value)
+        {
+            var account = await GetByIdAsync(id);
+            var transaction = account.Deposit(value);
+
+            _accountContext.Update(account);
+            _accountContext.Update(transaction);
+
+            await _accountContext.SaveChangesAsync();
+            return transaction;
+        }
+
+        public async Task<Transaction> SendTransferAsync(Guid? sourceId, Guid? targetId, decimal value)
+        {
+            var sourceAccount = await GetByIdAsync(sourceId);
+            var targetAccount = await GetByIdAsync(targetId);
+            var transaction = sourceAccount.SendTransfer(value, targetAccount);
+
+            _accountContext.Update(sourceAccount);
+            _accountContext.Update(targetAccount);
+
+            await _accountContext.SaveChangesAsync();
+            return transaction;
+        }
+
         public async Task<Account> RemoveAsync(Account account)
         {
             _accountContext.Remove(account);
-            await _accountContext.SaveChangesAsync();
-            return account;
-        }
-
-        public async Task<Account> UpdateAsync(Account account)
-        {
-            _accountContext.Update(account);
             await _accountContext.SaveChangesAsync();
             return account;
         }

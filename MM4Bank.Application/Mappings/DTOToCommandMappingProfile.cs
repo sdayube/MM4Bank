@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using MM4Bank.Application.Accounts.Commands;
 using MM4Bank.Application.DTOs;
-using MM4Bank.Application.Transactions.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace MM4Bank.Application.Mappings
     {
         public DTOToCommandMappingProfile()
         {
-            CreateMap<TransactionDTO, TransactionCreateCommand>();
+            CreateMap<AccountDTO, AccountCreateCommand>();
         }
     }
 }
