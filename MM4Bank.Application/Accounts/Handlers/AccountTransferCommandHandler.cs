@@ -22,13 +22,12 @@ namespace MM4Bank.Application.Accounts.Handlers
 
         public async Task<Transaction> Handle(AccountTransferCommand request, CancellationToken cancellationToken)
         {
-            var sourceAccount = await _accountRepository.GetByIdAsync(request.Id)
+            _ = await _accountRepository.GetByIdAsync(request.Id)
                 ?? throw new ApplicationException("Source account could not be found");
-
-            var targetAccount = await _accountRepository.GetByIdAsync(request.TargetId)
+            _ = await _accountRepository.GetByIdAsync(request.TargetId)
                 ?? throw new ApplicationException("Target account could not be found");
 
-            var transaction = sourceAccount.SendTransfer(request.Value, targetAccount);
+            var transaction = await _accountRepository.SendTransferAsync(request.Id, request.TargetId, request.Value);
             return transaction;
         }
     }

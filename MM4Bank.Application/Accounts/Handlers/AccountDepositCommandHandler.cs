@@ -30,7 +30,7 @@ namespace MM4Bank.Application.Accounts.Handlers
             }
             else
             {
-                var transaction = account.Deposit(request.Value);
+                var transaction = await _accountRepository.DepositAsync(request.Id, request.Value);
                 return transaction;
             }
         }

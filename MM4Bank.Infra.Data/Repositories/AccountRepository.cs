@@ -33,7 +33,9 @@ namespace MM4Bank.Infra.Data.Repositories
         {
             _accountContext.Add(account);
             await _accountContext.SaveChangesAsync();
-            return account;
+
+            var createdAccount = await GetByIdAsync(account.Id);
+            return createdAccount;
         }
 
         public async Task<Transaction> WithdrawAsync(Guid? id, decimal value)

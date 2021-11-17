@@ -30,7 +30,7 @@ namespace MM4Bank.Application.Accounts.Handlers
             }
             else
             {
-                var transaction = account.Withdraw(request.Value);
+                var transaction = await _accountRepository.WithdrawAsync(request.Id, request.Value);
                 return transaction;
             }
         }

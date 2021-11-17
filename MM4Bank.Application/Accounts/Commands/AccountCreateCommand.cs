@@ -11,7 +11,6 @@ namespace MM4Bank.Application.Accounts.Commands
 {
     public class AccountCreateCommand : IRequest<Account>
     {
-        public int AccountNumber { get; set; }
         public decimal Balance { get; set; }
         public Client Client { get; set; }
         public Guid ClientId { get; set; }
