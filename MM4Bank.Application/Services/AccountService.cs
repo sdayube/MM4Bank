@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using CleanArchMvc.Application.Accounts.Commands;
-using MediatR;
 using MM4Bank.Application.Accounts.Commands;
+using MediatR;
 using MM4Bank.Application.Accounts.Queries;
 using MM4Bank.Application.DTOs;
 using MM4Bank.Application.Interfaces;
@@ -46,10 +45,31 @@ namespace MM4Bank.Application.Services
             await _mediator.Send(command);
         }
 
-        public async Task UpdateAsync(AccountDTO accountDTO)
+        public async Task<TransactionDTO> WithdrawAsync(Guid? id, decimal value)
         {
-            var command = _mapper.Map<AccountUpdateCommand>(accountDTO);
-            await _mediator.Send(command);
+            var command = new AccountWithdrawCommand(id.Value, value) ?? throw new ApplicationException("Entity could not be loaded"); ;
+            var transactionEntity = await _mediator.Send(command);
+
+            return _mapper.Map<TransactionDTO>(transactionEntity);
+        }
+
+        public async Task<TransactionDTO> DepositAsync(Guid? id, decimal value)
+        {
+            var command = new AccountDepositCommand(id.Value, value) ?? throw new ApplicationException("Entity could not be loaded"); ;
+            var transactionEntity = await _mediator.Send(command);
+
+            return _mapper.Map<TransactionDTO>(transactionEntity);
+        }
+
+        public async Task<TransactionDTO> SendTransferAsync(Guid? sourceId, Guid? targetId, decimal value)
+        {
+            if (sourceId is null) throw new ApplicationException("Source entity could not be loaded");
+            if (targetId is null) throw new ApplicationException("Target entity could not be loaded");
+
+            var command = new AccountTransferCommand(sourceId.Value, targetId.Value, value);
+            var transactionEntity = await _mediator.Send(command);
+
+            return _mapper.Map<TransactionDTO>(transactionEntity);
         }
 
         public async Task RemoveAsync(Guid? id)
