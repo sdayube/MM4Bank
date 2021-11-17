@@ -6,6 +6,7 @@ Projeto realizado como conclusão do curso Gama Academy/XP, no qual temos como e
 1. CRUD de Clientes;
 2. CRUD de Contas;
 3. Histórico de Transações
+4. Board Scrum
 
 ## Tecnologias utilizadas no projeto
 
