@@ -33,31 +33,46 @@ namespace MM4Bank.Domain.Entities
             DomainExceptionValidation.When(targetAccount == null, "targetAccount is null!");
         }
 
-        public void Withdraw(decimal value)
+        public Transaction Withdraw(decimal value)
         {
             ValidateTransaction(value);
             ValidateBalance(value);
-            Withdrawals.Add(new Transaction(value, this, null, TransactionType.WITHDRAWAL));
+            Transaction transaction = new(value, this, null, TransactionType.WITHDRAWAL);
+
+            Withdrawals.Add(transaction);
             Balance -= value;
+
             this.UpdateEntity();
-        }
-        public void Deposit(decimal value)
-        {
-            ValidateTransaction(value);
-            Deposits.Add(new Transaction(value, null, this, TransactionType.DEPOSIT));
-            Balance += value;
-            this.UpdateEntity();
+
+            return transaction;
         }
 
-        public void SendTransfer(decimal value, Account targetAccount)
+        public Transaction Deposit(decimal value)
+        {
+            ValidateTransaction(value);
+            Transaction transaction = new(value, null, this, TransactionType.DEPOSIT);
+
+            Deposits.Add(transaction);
+            Balance += value;
+
+            this.UpdateEntity();
+
+            return transaction;
+        }
+
+        public Transaction SendTransfer(decimal value, Account targetAccount)
         {
             ValidateTransfer(value, targetAccount);
             Transaction transaction = new(value, this, targetAccount, TransactionType.TRANSFER);
+
             Balance -= value;
             Withdrawals.Add(transaction);
             targetAccount.ReceiveTransfer(transaction);
+
             this.UpdateEntity();
             targetAccount.UpdateEntity();
+
+            return transaction;
         }
 
         public void ReceiveTransfer(Transaction transaction)
