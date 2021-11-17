@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using CleanArchMvc.Application.Accounts.Commands;
+using MediatR;
+using MM4Bank.Application.Accounts.Commands;
+using MM4Bank.Application.Accounts.Queries;
 using MM4Bank.Application.DTOs;
 using MM4Bank.Application.Interfaces;
 using MM4Bank.Domain.Entities;
@@ -11,43 +15,47 @@ namespace MM4Bank.Application.Services
 {
     public class AccountService : IAccountService
     {
-        private IAccountRepository _accountRepository;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public AccountService(IAccountRepository accountRepository, IMapper mapper)
+        public AccountService(IMapper mapper, IMediator mediator)
         {
-            _accountRepository = accountRepository ?? throw new ArgumentNullException(nameof(accountRepository));
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         public async Task<IEnumerable<AccountDTO>> GetAccountsAsync()
         {
-            var accountsEntity = await _accountRepository.GetAccountsAsync();
-            return _mapper.Map<IEnumerable<AccountDTO>>(accountsEntity);
+            var query = new GetAccountsQuery() ?? throw new ApplicationException("Entities could not be loaded");
+            var accountEntity = await _mediator.Send(query);
+
+            return _mapper.Map<IEnumerable<AccountDTO>>(accountEntity);
         }
 
         public async Task<AccountDTO> GetByIdAsync(Guid? id)
         {
-            var accountEntity = await _accountRepository.GetByIdAsync(id);
+            var query = new GetAccountByIdQuery(id.Value) ?? throw new ApplicationException("Entity could not be loaded");
+            var accountEntity = await _mediator.Send(query);
+
             return _mapper.Map<AccountDTO>(accountEntity);
         }
 
         public async Task AddAsync(AccountDTO accountDTO)
         {
-            var accountEntity = _mapper.Map<Account>(accountDTO);
-            await _accountRepository.CreateAsync(accountEntity);
+            var command = _mapper.Map<AccountCreateCommand>(accountDTO);
+            await _mediator.Send(command);
         }
 
         public async Task UpdateAsync(AccountDTO accountDTO)
         {
-            var accountEntity = _mapper.Map<Account>(accountDTO);
-            await _accountRepository.UpdateAsync(accountEntity);
+            var command = _mapper.Map<AccountUpdateCommand>(accountDTO);
+            await _mediator.Send(command);
         }
 
         public async Task RemoveAsync(Guid? id)
         {
-            var accountEntity = _accountRepository.GetByIdAsync(id).Result;
-            await _accountRepository.RemoveAsync(accountEntity);
+            var command = new AccountRemoveCommand(id.Value) ?? throw new ApplicationException("Entity could not be loaded");
+            await _mediator.Send(command);
         }
     }
 }

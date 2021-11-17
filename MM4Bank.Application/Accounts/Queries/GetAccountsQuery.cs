@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MM4Bank.Application.Transactions.Queries
+namespace MM4Bank.Application.Accounts.Queries
 {
-    public class GetTransactionsQuery : IRequest<IEnumerable<Transaction>>
+    public class GetAccountsQuery : IRequest<IEnumerable<Account>>
     {
     }
 }

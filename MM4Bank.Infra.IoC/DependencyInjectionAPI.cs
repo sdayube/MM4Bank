@@ -19,8 +19,8 @@ namespace MM4Bank.Infra.IoC
             services.AddScoped<ITransactionRepository, TransactionRepository>();
 
             //services.AddAutoMapper(typeof(DomainToDTOMappingProfile
-            // var myhandlers = AppDomain.CurrentDomain.Load("MM4Bank.Application");
-            // services.AddMediatR(myhandlers)
+            //var myhandlers = AppDomain.CurrentDomain.Load("MM4Bank.Application");
+            //services.AddMediatR(myhandlers)
 
             return services;
         }
