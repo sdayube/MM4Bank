@@ -1,4 +1,4 @@
-![Logo of the project](http://logo_link)
+![Logo of the project](https://github.com/RuaniFilipe/MM4Bank/blob/RuaniFilipe-readme/readme-images/logo.png)
  
 ## MM4 Bank
  
