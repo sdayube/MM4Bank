@@ -16,6 +16,7 @@ Projeto realizado como conclusão do curso Gama Academy/XP, no qual temos como e
 * <img src="https://github.com/RuaniFilipe/MM4Bank/blob/RuaniFilipe-readme/readme-images/fluentassertions.png" width="120" title="Fluent Assertions">
 * <img src="https://github.com/RuaniFilipe/MM4Bank/blob/RuaniFilipe-readme/readme-images/automapper.jpg" width="120" title="AutoMapper">
 * <img src="https://github.com/RuaniFilipe/MM4Bank/blob/RuaniFilipe-readme/readme-images/mediatr.jpg" width="120" title="mediatR">
+* <img src="https://github.com/RuaniFilipe/MM4Bank/blob/RuaniFilipe-readme/readme-images/xunit.jpg" width="120" title="xUnit">
  
 #### Inspiração
 Curso Clean Architecture Essencial - ASP .NET Core com C# - Prof. Macoratti, acessado via (http://xpi.udemy.com)
