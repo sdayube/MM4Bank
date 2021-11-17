@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MM4Bank.Application.Transactions.Commands
+namespace MM4Bank.Application.Accounts.Queries
 {
-    public class TransactionRemoveCommand : IRequest<Transaction>
+    public class GetAccountByIdQuery : IRequest<Account>
     {
         public Guid Id { get; set; }
 
-        public TransactionRemoveCommand(Guid id)
+        public GetAccountByIdQuery(Guid id)
         {
             Id = id;
         }

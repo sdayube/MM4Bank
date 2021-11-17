@@ -9,8 +9,5 @@ namespace MM4Bank.Domain.Interfaces
     {
         Task<IEnumerable<Transaction>> GetTransactionsAsync();
         Task<Transaction> GetByIdAsync(Guid? id);
-        Task<Transaction> CreateAsync(Transaction transaction);
-        Task<Transaction> RemoveAsync(Transaction transaction);
-
     }
 }

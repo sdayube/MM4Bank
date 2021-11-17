@@ -11,7 +11,5 @@ namespace MM4Bank.Application.Interfaces
     {
         Task<IEnumerable<TransactionDTO>> GetTransactionsAsync();
         Task<TransactionDTO> GetByIdAsync(Guid? id);
-        Task AddAsync(TransactionDTO transactionDTO);
-        Task RemoveAsync(Guid? id);
     }
 }
