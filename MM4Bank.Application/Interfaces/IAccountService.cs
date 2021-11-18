@@ -11,6 +11,7 @@ namespace MM4Bank.Application.Interfaces
     {
         Task<IEnumerable<AccountDTO>> GetAccountsAsync();
         Task<AccountDTO> GetByIdAsync(Guid? id);
+        Task<AccountDTO> AddAsync();
         Task<TransactionDTO> WithdrawAsync(Guid? id, decimal value);
         Task<TransactionDTO> DepositAsync(Guid? id, decimal value);
         Task<TransactionDTO> SendTransferAsync(Guid? sourceId, Guid? destinationId, decimal value);

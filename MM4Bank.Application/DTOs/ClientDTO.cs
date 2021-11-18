@@ -19,9 +19,7 @@ namespace MM4Bank.Application.DTOs
         [Required(ErrorMessage = "CPF is required!")]
         public CPF CPF { get; set; }
 
-        [Required(ErrorMessage = "Account is required!")]
-        public Account Account { get; set; }
-
+        [Required(ErrorMessage = "AccountId is required!")]
         public Guid AccountId { get; set; }
 
         [Required(ErrorMessage = "Address is required!")]

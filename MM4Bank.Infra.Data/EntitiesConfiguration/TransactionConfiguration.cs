@@ -25,34 +25,30 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
             builder
                 .Property(p => p.Value)
                 .HasColumnName("VL_VALUE")
-                .HasPrecision(10,2)
+                .HasPrecision(10, 2)
                 .IsRequired();
 
             builder
                 .Property(p => p.SourceAccountId)
                 .HasColumnName("ID_SOURCE_ACCOUNT")
-                .HasMaxLength(100)
-                .IsRequired();
+                .HasMaxLength(100);
 
             builder
                 .HasOne(p => p.SourceAccount)
                 .WithMany(p => p.Withdrawals)
                 .HasForeignKey(p => p.SourceAccountId)
-                .OnDelete(DeleteBehavior.NoAction)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder
                 .Property(p => p.TargetAccountId)
                 .HasColumnName("ID_TARGET_ACCOUNT")
-                .HasMaxLength(100)
-                .IsRequired();
+                .HasMaxLength(100);
 
             builder
                 .HasOne(p => p.TargetAccount)
                 .WithMany(p => p.Deposits)
                 .HasForeignKey(p => p.TargetAccountId)
-                .OnDelete(DeleteBehavior.NoAction)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder
                 .Property(p => p.Type)

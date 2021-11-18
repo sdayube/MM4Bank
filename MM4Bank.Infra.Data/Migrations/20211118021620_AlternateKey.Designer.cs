@@ -4,14 +4,16 @@ using MM4Bank.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MM4Bank.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211118021620_AlternateKey")]
+    partial class AlternateKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,11 +135,13 @@ namespace MM4Bank.Infra.Data.Migrations
                         .HasColumnName("ST_ISACTIVE");
 
                     b.Property<Guid?>("SourceAccountId")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ID_SOURCE_ACCOUNT");
 
                     b.Property<Guid?>("TargetAccountId")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ID_TARGET_ACCOUNT");
@@ -169,7 +173,7 @@ namespace MM4Bank.Infra.Data.Migrations
                     b.HasOne("MM4Bank.Domain.Entities.Account", "Account")
                         .WithOne("Client")
                         .HasForeignKey("MM4Bank.Domain.Entities.Client", "AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -180,12 +184,14 @@ namespace MM4Bank.Infra.Data.Migrations
                     b.HasOne("MM4Bank.Domain.Entities.Account", "SourceAccount")
                         .WithMany("Withdrawals")
                         .HasForeignKey("SourceAccountId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("MM4Bank.Domain.Entities.Account", "TargetAccount")
                         .WithMany("Deposits")
                         .HasForeignKey("TargetAccountId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("SourceAccount");
 

@@ -39,10 +39,12 @@ namespace MM4Bank.Application.Services
             return _mapper.Map<AccountDTO>(accountEntity);
         }
 
-        public async Task AddAsync(AccountDTO accountDTO)
+        public async Task<AccountDTO> AddAsync()
         {
-            var command = _mapper.Map<AccountCreateCommand>(accountDTO);
-            await _mediator.Send(command);
+            var command = new AccountCreateCommand();
+            var accountEntity = await _mediator.Send(command);
+
+            return _mapper.Map<AccountDTO>(accountEntity);
         }
 
         public async Task<TransactionDTO> WithdrawAsync(Guid? id, decimal value)

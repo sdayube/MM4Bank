@@ -43,8 +43,8 @@ namespace MM4Bank.Infra.Data.Repositories
             var account = await GetByIdAsync(id);
             var transaction = account.Withdraw(value);
 
+            _accountContext.Add(transaction);
             _accountContext.Update(account);
-            _accountContext.Update(transaction);
 
             await _accountContext.SaveChangesAsync();
             return transaction;
@@ -55,8 +55,8 @@ namespace MM4Bank.Infra.Data.Repositories
             var account = await GetByIdAsync(id);
             var transaction = account.Deposit(value);
 
+            _accountContext.Add(transaction);
             _accountContext.Update(account);
-            _accountContext.Update(transaction);
 
             await _accountContext.SaveChangesAsync();
             return transaction;
@@ -68,6 +68,7 @@ namespace MM4Bank.Infra.Data.Repositories
             var targetAccount = await GetByIdAsync(targetId);
             var transaction = sourceAccount.SendTransfer(value, targetAccount);
 
+            _accountContext.Add(transaction);
             _accountContext.Update(sourceAccount);
             _accountContext.Update(targetAccount);
 
