@@ -17,6 +17,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
         {
             base.Configure(builder);
             builder.ToTable("TB_ACCOUNT");
+            builder.HasAlternateKey(e => e.AccountNumber);
             //as duas linhas abaixo significam que o Id será a chave primária da tabela e que o nome terá tamanho máximo de 100 e será obrigatória (Not Null)
             builder
                 .Property(p => p.AccountNumber)
@@ -40,7 +41,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .HasOne(p => p.Client)
                 .WithOne(p => p.Account)
                 .HasForeignKey<Client>(p => p.AccountId)
-                .OnDelete(DeleteBehavior.NoAction)
+                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
         }
     }

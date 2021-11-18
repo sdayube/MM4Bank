@@ -17,10 +17,7 @@ namespace MM4Bank.Application.DTOs
         [Required(ErrorMessage = "Balance is required!")]
         public decimal Balance { get; set; }
 
-        public Client Client { get; set; }
         public Guid ClientId { get; set; }
-        public List<Transaction> Deposits { get; set; }
-        public List<Transaction> Withdrawals { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

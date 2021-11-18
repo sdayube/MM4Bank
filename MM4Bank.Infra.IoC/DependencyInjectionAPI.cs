@@ -29,8 +29,8 @@ namespace MM4Bank.Infra.IoC
 
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
-            var myHandlers = AppDomain.CurrentDomain.Load("MM4Bank.Application");
-            services.AddMediatR(myHandlers);
+            var myhandlers = AppDomain.CurrentDomain.Load("MM4Bank.Application");
+            services.AddMediatR(myhandlers);
 
             return services;
         }

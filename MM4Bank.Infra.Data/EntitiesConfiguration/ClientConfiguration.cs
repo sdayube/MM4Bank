@@ -51,7 +51,7 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .HasOne(p => p.Account)
                 .WithOne(p => p.Client)
                 .HasForeignKey<Account>(p => p.ClientId)
-                .OnDelete(DeleteBehavior.NoAction)
+                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
             builder

@@ -18,11 +18,7 @@ namespace MM4Bank.Application.DTOs
 
         public Guid SourceAccountId { get; private set; }
 
-        public Account SourceAccount { get; private set; }
-
         public Guid TargetAccountId { get; private set; }
-
-        public Account TargetAccount { get; private set; }
 
         [Required(ErrorMessage = "Transaction type is required!")]
         public TransactionType Type { get; private set; }
