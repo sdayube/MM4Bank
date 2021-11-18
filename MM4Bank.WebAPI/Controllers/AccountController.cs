@@ -122,6 +122,7 @@ namespace MM4Bank.WebAPI.Controllers
                 return NotFound("Account not found");
             }
 
+
             await _accountService.RemoveAsync(id);
 
             return Ok(account);

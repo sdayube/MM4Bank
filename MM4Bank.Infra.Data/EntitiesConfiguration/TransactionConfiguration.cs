@@ -34,21 +34,9 @@ namespace MM4Bank.Infra.Data.EntitiesConfiguration
                 .HasMaxLength(100);
 
             builder
-                .HasOne(p => p.SourceAccount)
-                .WithMany(p => p.Withdrawals)
-                .HasForeignKey(p => p.SourceAccountId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            builder
                 .Property(p => p.TargetAccountId)
                 .HasColumnName("ID_TARGET_ACCOUNT")
                 .HasMaxLength(100);
-
-            builder
-                .HasOne(p => p.TargetAccount)
-                .WithMany(p => p.Deposits)
-                .HasForeignKey(p => p.TargetAccountId)
-                .OnDelete(DeleteBehavior.NoAction);
 
             builder
                 .Property(p => p.Type)

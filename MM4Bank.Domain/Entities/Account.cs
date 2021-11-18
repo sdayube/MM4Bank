@@ -11,8 +11,6 @@ namespace MM4Bank.Domain.Entities
         public decimal Balance { get; private set; } = 0m;
         public Client Client { get; private set; }
         public Guid ClientId { get; private set; }
-        public List<Transaction> Deposits { get; private set; } = new List<Transaction>();
-        public List<Transaction> Withdrawals { get; private set; } = new List<Transaction>();
 
         public Account() { }
 
@@ -39,7 +37,6 @@ namespace MM4Bank.Domain.Entities
             ValidateBalance(value);
             Transaction transaction = new(value, this, null, TransactionType.WITHDRAWAL);
 
-            Withdrawals.Add(transaction);
             Balance -= value;
 
             this.UpdateEntity();
@@ -52,7 +49,6 @@ namespace MM4Bank.Domain.Entities
             ValidateTransaction(value);
             Transaction transaction = new(value, null, this, TransactionType.DEPOSIT);
 
-            Deposits.Add(transaction);
             Balance += value;
 
             this.UpdateEntity();
@@ -66,7 +62,6 @@ namespace MM4Bank.Domain.Entities
             Transaction transaction = new(value, this, targetAccount, TransactionType.TRANSFER);
 
             Balance -= value;
-            Withdrawals.Add(transaction);
             targetAccount.ReceiveTransfer(transaction);
 
             this.UpdateEntity();
@@ -78,7 +73,6 @@ namespace MM4Bank.Domain.Entities
         public void ReceiveTransfer(Transaction transaction)
         {
             Balance += transaction.Value;
-            Deposits.Add(transaction);
         }
     }
 }

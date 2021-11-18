@@ -8,9 +8,7 @@ namespace MM4Bank.Domain.Entities
     {
         public decimal Value { get; private set; }
         public Guid? SourceAccountId { get; private set; }
-        public Account SourceAccount { get; private set; }
         public Guid? TargetAccountId { get; private set; }
-        public Account TargetAccount { get; private set; }
         public TransactionType Type { get; private set; }
 
         private Transaction() { }
@@ -20,9 +18,7 @@ namespace MM4Bank.Domain.Entities
             ValidateDomain(value, sourceAccount);
             Value = value;
             SourceAccountId = sourceAccount?.Id;
-            SourceAccount = sourceAccount;
             TargetAccountId = targetAccount?.Id;
-            TargetAccount = targetAccount;
             Type = type;
         }
 
