@@ -58,15 +58,19 @@ namespace MM4Bank.Infra.Data.Repositories
         public async Task<Client> RemoveAsync(Client client)
         {
             _clientContext.Remove(client);
+            _clientContext.Remove(client.Account);
             await _clientContext.SaveChangesAsync();
             return client;
         }
 
         public async Task<Client> UpdateAsync(Client client)
         {
-            _clientContext.Update(client);
+            var existingClient = await _clientContext.Clients.Include(a => a.Account).SingleOrDefaultAsync(c => c.Id == client.Id);
+            existingClient.Update(client.Name.FullName, client.CPF.ToString(), existingClient.Account, client.Address.FullAddress, client.Password._password);
+
+            _clientContext.Update(existingClient);
             await _clientContext.SaveChangesAsync();
-            return client;
+            return existingClient;
         }
     }
 }

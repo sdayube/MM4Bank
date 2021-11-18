@@ -29,5 +29,17 @@ namespace MM4Bank.WebAPI.JsonClasses
                 Password = new Password(clientData.Password)
             };
         }
+
+        public static ClientDTO ConvertDataToDTO(ClientData clientData, Guid id)
+        {
+            return new ClientDTO()
+            {
+                Id = id,
+                Name = new Name(clientData.Name),
+                CPF = new CPF(clientData.CPF),
+                Address = new Address(clientData.Address),
+                Password = new Password(clientData.Password)
+            };
+        }
     }
 }

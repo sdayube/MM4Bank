@@ -69,16 +69,20 @@ namespace MM4Bank.Application.Services
             return _mapper.Map<ClientDTO>(clientWithAccountId);
         }
 
-        public async Task UpdateAsync(ClientDTO clientDTO)
+        public async Task<ClientDTO> UpdateAsync(ClientDTO clientDTO)
         {
             var clientEntity = _mapper.Map<Client>(clientDTO);
-            await _clientRepository.UpdateAsync(clientEntity);
+            var clientLinked = await _clientRepository.UpdateAsync(clientEntity);
+
+            return _mapper.Map<ClientDTO>(clientLinked);
         }
 
-        public async Task RemoveAsync(Guid? id)
+        public async Task<ClientDTO> RemoveAsync(Guid? id)
         {
             var clientEntity = _clientRepository.GetByIdAsync(id).Result;
             await _clientRepository.RemoveAsync(clientEntity);
+
+            return _mapper.Map<ClientDTO>(clientEntity);
         }
     }
 }
