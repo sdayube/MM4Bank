@@ -40,7 +40,19 @@ namespace MM4Bank.Domain.Entities
             DomainExceptionValidation.When(string.IsNullOrEmpty(address), "Invalid address");
             DomainExceptionValidation.When(string.IsNullOrEmpty(password), "Invalid password");
             DomainExceptionValidation.When(password.Length < 8, "Password must be at least 8 characters long");
+        }
 
+        public void LinkAccount(Account account)
+        {
+            DomainExceptionValidation.When(account is null, "Invalid account");
+            Account = account;
+            AccountId = account.Id;
+        }
+
+        public void SetPassword(string password)
+        {
+            DomainExceptionValidation.When(password.Length < 8, "Password must be at least 8 characters long");
+            Password = new Password(password);
         }
     }
 }

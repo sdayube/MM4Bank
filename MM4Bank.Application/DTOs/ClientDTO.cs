@@ -25,6 +25,9 @@ namespace MM4Bank.Application.DTOs
         [Required(ErrorMessage = "Address is required!")]
         public Address Address { get; set; }
 
+        [Required(ErrorMessage = "Password is required!")]
+        public Password Password { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }

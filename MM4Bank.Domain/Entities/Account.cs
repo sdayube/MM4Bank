@@ -74,5 +74,10 @@ namespace MM4Bank.Domain.Entities
         {
             Balance += transaction.Value;
         }
+
+        public void SetClientId(Guid clientId)
+        {
+            ClientId = clientId;
+        }
     }
 }

@@ -20,6 +20,11 @@ namespace MM4Bank.Infra.Data.Repositories
 
         public async Task<Client> CreateAsync(Client client)
         {
+            var clientAccount = new Account();
+
+            clientAccount.SetClientId(client.Id);
+            client.LinkAccount(clientAccount);
+
             _clientContext.Add(client);
             await _clientContext.SaveChangesAsync();
             return client;

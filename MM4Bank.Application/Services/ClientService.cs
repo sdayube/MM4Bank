@@ -53,7 +53,7 @@ namespace MM4Bank.Application.Services
             return _mapper.Map<ClientDTO>(clientEntity);
         }
 
-        public async Task AddAsync(ClientDTO clientDTO)
+        public async Task<ClientDTO> AddAsync(ClientDTO clientDTO)
         {
             var allCPFs = await GetClientsAsync();
 
@@ -63,7 +63,10 @@ namespace MM4Bank.Application.Services
             }
 
             var clientEntity = _mapper.Map<Client>(clientDTO);
-            await _clientRepository.CreateAsync(clientEntity);
+
+            var clientWithAccountId = await _clientRepository.CreateAsync(clientEntity);
+
+            return _mapper.Map<ClientDTO>(clientWithAccountId);
         }
 
         public async Task UpdateAsync(ClientDTO clientDTO)

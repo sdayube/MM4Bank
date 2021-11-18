@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MM4Bank.Application.DTOs;
 using MM4Bank.Application.Interfaces;
+using MM4Bank.Domain.ValueObjects;
+using MM4Bank.WebAPI.JsonClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +33,34 @@ namespace MM4Bank.WebAPI.Controllers
             }
 
             return Ok(accounts);
+        }
+
+        [HttpGet("{id}", Name = "GetClient")]
+        public async Task<ActionResult<ClientDTO>> GetById(Guid id)
+        {
+            var account = await _clientService.GetByIdAsync(id);
+
+            if (account is null)
+            {
+                return NotFound("Account not found");
+            }
+
+            return Ok(account);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ClientDTO>> Create(ClientData clientData)
+        {
+            var clientDTO = ClientData.ConvertDataToDTO(clientData);
+
+            var newClient = await _clientService.AddAsync(clientDTO);
+
+            if (newClient is null)
+            {
+                return BadRequest("Client could not be created");
+            }
+
+            return new CreatedAtRouteResult("GetClient", new { id = newClient.Id }, newClient);
         }
     }
 }
