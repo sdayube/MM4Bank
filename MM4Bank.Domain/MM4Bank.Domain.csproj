@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageReference Include="Konscious.Security.Cryptography.Argon2" Version="1.2.1" />
   </PropertyGroup>
 
 </Project>
