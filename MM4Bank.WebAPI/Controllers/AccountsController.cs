@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using MM4Bank.Application.Accounts.Commands;
 using MM4Bank.Application.DTOs;
 using MM4Bank.Application.Interfaces;
+using MM4Bank.WebAPI.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -51,18 +53,20 @@ namespace CleanArchMvc.API.Controllers
                 accountDto);
         }
 
-        [HttpPut]
-        public async Task<ActionResult> Put(Guid id,[FromBody] AccountDTO accountDto)
+        //[Route("{id}/deposit/")]
+        [HttpPut("{id:Guid}", Name = "deposit")]
+        public async Task<ActionResult> Deposit(Guid id,[FromBody] DepositDto deposit)
+        //public async Task<ActionResult> Deposit(Guid id,[FromBody] AccountDTO deposit)
         {
-            if (id != accountDto.Id)
+            if (id != deposit.Id)
                 return BadRequest();
 
-            if (accountDto == null)
+            if (deposit == null)
                 return BadRequest();
 
-            await _accountService.UpdateAsync(accountDto);
+            await _accountService.DepositAsync(id, deposit.Value);
 
-            return Ok(accountDto);
+            return Ok(deposit);
         }          
         
         [HttpDelete("{id:Guid}")]
