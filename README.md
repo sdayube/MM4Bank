@@ -2,19 +2,19 @@
  
 ## MM4 Bank
  
-Projeto realizado como conclusão do curso Gama Academy/XP, no qual temos como entregáveis
-1. CRUD de Clientes;
-2. CRUD de Contas;
-3. Histórico de Transações;
-4. Board Scrum;
-5. Banco de dados em script SQL
-6. Endpoints listados no Readme.md
+Project done for the Gama Academy/XP course, with the following requirements
+1. Customer CRUD;
+2. Account CRUD;
+3. Transaction History;
+4. Scrum Board;
+5. SQL Database
+6. Endpoints listed on the Readme.md
 
-## Arquitetura adotada: Clean Arch
+## Adopted Architecture: Clean Arch
 <img src="https://github.com/RuaniFilipe/MM4Bank/blob/RuaniFilipe-readme/readme-images/clean%20arch.png" width="360" title="Clean Arch">
 
 
-## Tecnologias utilizadas no projeto
+## Used technogies:
 
 <img src="https://github.com/RuaniFilipe/MM4Bank/blob/RuaniFilipe-readme/readme-images/c%23.png" width="120" title="C#">
 <img src="https://github.com/RuaniFilipe/MM4Bank/blob/RuaniFilipe-readme/readme-images/dotnet.png" width="120" title=".NET">
@@ -33,13 +33,13 @@ Projeto realizado como conclusão do curso Gama Academy/XP, no qual temos como e
 
 ## Banco de Dados
 
-Nosso Banco de Dados foi criado via migrations, cujo código pode ser observado na pasta MM4Bank.Infra.Data -> Migrations ou na imagem abaixo:
+Database created via migrations, the code of which can be seen at MM4Bank.Infra.Data -> Migrations or in the image below:
 
 <img src="https://github.com/RuaniFilipe/MM4Bank/blob/RuaniFilipe-readme/readme-images/migration%20inicial.png" width="720" title="Migration">
 
 
-#### Inspiração
-Curso Clean Architecture Essencial - ASP .NET Core com C# - Prof. Macoratti, acessado via (http://xpi.udemy.com)
-Curso Gama XP, aulas ministradas pelo Prof. Filipe Ceccon
+#### Inspiration
+"Clean Architecture Essencial - ASP .NET Core com C#" Course - Prof. Macoratti, accessed via Udemy
+"Gama XP" Course, classes ministered by Filipe Ceccon
 
  
